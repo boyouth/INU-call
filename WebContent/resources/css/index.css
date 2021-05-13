@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+body {
+    margin: 0;
+}
+
+.wrapper {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #064a69;
+    list-style-type: none;
+}
+
+.nav-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.nav-item a {
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    padding: .2em;
+    font-size: 12px;
+}
+
+.title {
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+}
+
+.user {
+    display: flex;
+    margin-left: auto!important;
+    margin-right: 1em;
+}
+
+.img-clock {
+    margin: 5px 0px 0px 5px;
+}
+
+.footer {
+    background-color: #c7c7c7;
+    text-align: center;
+    font-size: 12px;
+}

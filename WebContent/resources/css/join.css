@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+html, body {
+	display: block;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10%;
+}
+
+.title_login {
+	font-size: 30px;
+	text-align: center;
+}
+
+.forgot_pw {
+	font-size: 12px;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.btn {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.label {
+	font-size: 12px;
+}
