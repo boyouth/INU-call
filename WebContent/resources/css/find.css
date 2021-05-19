@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+.fm{
+	padding:50px;
+	text-align:center;
+}
+
+.fm .title_find_id{
+	padding:20px;
+	font-size:17px;
+	font-weight:1000;
+	color:#0B615E;
+}
+
+.fm .label-email,
+.fm .label-name{
+	padding-top:10px;
+}
+
+.fm .forgot_pw{
+	text-decoration: underline;
+}
+
+.fm label{
+	display:block;
+	margin:0 140px 0 0;
+}
+
+.fm .label-id{
+	margin:0 120px 0 0;
+}
+
+.fm .btn{
+	margin:10px;
+}
+
+.fm .home{
+	text-decoration: underline;
+}
+
+.fm .btn-find{
+	display:inline-block;
+}
