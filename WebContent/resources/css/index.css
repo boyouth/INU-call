@@ -1,58 +1,244 @@
 @charset "UTF-8";
 
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
 body {
-    margin: 0;
+	margin: 0;
 }
 
 .wrapper {
-    display: block;
-    justify-content: center;
-    align-items: center;
+	display: block;
+	justify-content: center;
+	align-items: center;
+}
+
+.wrapper .header {
+	width: 70%;
+	margin: 0 auto;
+}
+
+.wrapper .footer {
+	background-color: #c7c7c7;
+	text-align: center;
+	font-size: 12px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 15px 0;
 }
 
 .nav-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #064a69;
-    list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #064a69;
+	list-style-type: none;
 }
 
 .nav-item {
-    padding: 10px;
-    cursor: pointer;
+	padding: 10px;
+	cursor: pointer;
 }
 
 .nav-item a {
-    text-align: center;
-    text-decoration: none;
-    color: #ffffff;
-    padding: .2em;
-    font-size: 12px;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff;
+	padding: .2em;
+	font-size: 12px;
 }
 
 .title {
-    text-align: center;
+	text-align: center;
 }
 
 .menu {
-    display: flex;
+	display: flex;
 }
 
 .user {
-    display: flex;
-    margin-left: auto!important;
-    margin-right: 1em;
+	display: flex;
+	margin-left: auto !important;
+	margin-right: 1em;
 }
 
 .img-clock {
-    margin: 5px 0px 0px 5px;
+	margin: 5px 0px 0px 5px;
 }
 
-.footer {
-    background-color: #c7c7c7;
-    text-align: center;
-    font-size: 12px;
+.wrapper .content {
+	width: 70%;
+	margin: 0 auto;
+}
+
+.wrapper .content .main .main-slogan {
+	padding: 100px;
+	text-align: center;
+	font-family: 'Hanna', sans-serif;
+	font-size: 15px;
+}
+
+.wrapper .content .main .main-slogan .doit {
+	color: #FE2E64;
+}
+
+.wrapper .content .main .main-slogan .goal {
+	padding: 10px;
+}
+
+.content .sub {
+	width: 29%;
+	float: left;
+	text-align: left;
+	font-size: 12px;
+}
+
+.content .sub .search {
+	padding: 10px 0 10px 0;
+}
+
+.content .sub .menu {
+	display: block;
+	padding: 5px 0 0 0;
+}
+
+.content .sub .whatis {
+	padding: 5px 0 0 0;
+}
+
+.content .sub .whatis .tit {
+	color: rgb(48, 33, 146);
+	font-weight: 1000;
+	text-decoration: underline;
+}
+
+.content .main {
+	padding-left: 7px;
+	width: 70%;
+	float: left;
+	text-align: left;
+	font-size: 12px;
+}
+
+.content .main .btn-new {
+	text-align: right;
+	padding-bottom: 10px;
+}
+
+.main .list_title {
+	padding: 50px 0 0 4px;
+}
+
+.main .list_title .tit {
+	display: inline-block;
+	color: #086A87;
+	font-weight: 1000;
+}
+
+
+.main .list_title .hit, 
+.main .list_title .date	{
+	display: inline-block;
+}
+
+.main .list_title .writer{
+	display: inline-block;
+}
+
+.main .note {
+	display: block;
+	padding: 20px 0 30px 4px;
+	text-align: center;
+}
+
+.main .edit{
+	display:block;
+	text-align:right;
+}
+.main .list_content {
+	display: block;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.main .btn-emotion {
+	padding: 5px;
+	text-align: center;
+}
+
+.main .list_comment_write {
+	display: block;
+	text-align: center;
+	padding-bottom: 45px;
+	width: 100%;
+}
+
+.main .list_comment {
+	padding: 5px 5px 20px 5px;
+}
+
+.main .list_comment .comment-img {
+	display: inline-block;
+}
+
+.main .list_comment .user_name {
+	display: inline-block;
+	font-weight: 1000;
+}
+
+.main .list_comment .reply {
+	display: inline-block;
+}
+
+.main .list_comment_write div {
+	float: left;
+}
+
+.main .list_comment_write .btn-comment {
+	padding: 3px;
+}
+
+.main .content_list .sort {
+	font-size: 15px;
+	padding: 30px 0 63px 7px;
+	font-weight: 1000;
+	color: rgb(39, 38, 122);
+}
+
+.main .content_write .sort, .main .content_modify .sort {
+	text-align: left;
+	font-size: 15px;
+	padding: 30px 0 63px 7px;
+	font-weight: 1000;
+	color: rgb(39, 38, 122);
+}
+
+.main .content_write .content_write_list, .main .content_modify .content_modify_list
+	{
+	padding-left: 40px;
+}
+
+.main .content_write .tit, .main .content_write .con, .main .content_write .file
+	{
+	padding-bottom: 30px;
+}
+
+.main .content_modify .tit, .main .content_modify .con, .main .content_modify .file
+	{
+	padding-bottom: 30px;
+}
+
+.list_content div {
+	padding: 3px;
+}
+
+.content a:link, .content a:visited, .content a:active {
+	color: rgb(18, 1, 65);
+	text-decoration: none;
+}
+
+.content a:hover {
+	color: rgb(3, 131, 182);
 }

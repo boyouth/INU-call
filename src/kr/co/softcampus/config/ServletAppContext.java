@@ -1,6 +1,5 @@
 package kr.co.softcampus.config;
 
-import javax.annotation.Resource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import kr.co.softcampus.beans.UserBean;
+import kr.co.softcampus.mapper.BoardMapper;
 import kr.co.softcampus.mapper.UserMapper;
 
 // Spring MVC 프로젝트에 관련된 설정을 하는 클래스
@@ -90,6 +89,15 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Bean
 	public MapperFactoryBean<UserMapper> getUserMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<UserMapper> factoryBean = new MapperFactoryBean<UserMapper>(UserMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+
+		return factoryBean;
+
+	}
+	
+	@Bean
+	public MapperFactoryBean<BoardMapper> getBoardMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<BoardMapper> factoryBean = new MapperFactoryBean<BoardMapper>(BoardMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 
 		return factoryBean;

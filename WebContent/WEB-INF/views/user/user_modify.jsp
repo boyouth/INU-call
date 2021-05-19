@@ -35,77 +35,91 @@
 	}
 </script>
 <body>
-<c:import url="/WEB-INF/views/include/header.jsp" />
 	<div class="wrapper">
+	<c:import url="/WEB-INF/views/include/header.jsp" />
 
-		<form action="${root }user/user_modify_ok" method="post" name="user_mod" id="user_mod">
-			<div class="title_login">회원정보수정</div>
+		<div>
+			<div class="content">
+				<c:import url="/WEB-INF/views/sub.jsp" />
+				<div class="main">
+					<form action="${root }user/user_modify_ok" method="post"
+						name="user_mod" id="user_mod" class="fm">
+						<div class="title_join">회원정보수정</div>
 
 
-			<div>
-				<div>
-					<label for="id" class="label">Username</label>
-				</div>
-				<div>
-					<input type="text" name="user_id" value="${loginUserInfo.user_id }" readonly="readonly">
+						<div>
+							<div>
+								<label for="id" class="label">Username</label>
+							</div>
+							<div>
+								<input type="text" name="user_id"
+									value="${loginUserInfo.user_id }" readonly="readonly" style="background-color:#FAFAFA">
+							</div>
+						</div>
+
+						<div>
+							<div>
+								<label for="id" class="label-name">Name</label>
+							</div>
+							<div>
+								<input type="text" name="user_name"
+									value="${loginUserInfo.user_name }" readonly="readonly" style="background-color:#FAFAFA">
+							</div>
+						</div>
+
+						<div>
+							<div>
+								<label for="pw" class="label">Password</label>
+							</div>
+							<div>
+								<input type="password" name="user_pw">
+							</div>
+						</div>
+
+						<div>
+							<div>
+								<label for="pw" class="label-pwchk">Password check</label>
+							</div>
+							<div>
+								<input type="password" name="user_pw_check">
+							</div>
+						</div>
+
+						<div>
+							<div>
+								<label for="id" class="label-email">Email</label>
+							</div>
+							<div>
+								<input type="text" name="email" value="${loginUserInfo.email }"
+									placeholder="예) abc@inu.ac.kr">
+							</div>
+						</div>
+
+						<div>
+							<div>
+								<label for="id" class="label-phone">Phone</label>
+							</div>
+							<div>
+								<select name="phone1">
+									<option value="010" selected>010</option>
+									<option value="011">011</option>
+									<option value="017">017</option>
+								</select> <input type="text" name="phone2" size="12" value="${phone }"
+									placeholder="숫자만">
+							</div>
+						</div>
+
+						<div class="btn">
+							<button type="button" class="btn-mod" onclick="click_modify()"
+								id="reg_submit">정보수정</button>
+						</div>
+					</form>
+
 				</div>
 			</div>
+		</div>
 
-			<div>
-				<div>
-					<label for="id" class="label">Name</label>
-				</div>
-				<div>
-					<input type="text" name="user_name" value="${loginUserInfo.user_name }" readonly="readonly">
-				</div>
-			</div>
 
-			<div>
-				<div>
-					<label for="pw" class="label">Password</label>
-				</div>
-				<div>
-					<input type="password" name="user_pw">
-				</div>
-			</div>
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
 
-			<div>
-				<div>
-					<label for="pw" class="label">Password check</label>
-				</div>
-				<div>
-					<input type="password" name="user_pw_check">
-				</div>
-			</div>
-
-			<div>
-				<div>
-					<label for="id" class="label">Email</label>
-				</div>
-				<div>
-					<input type="text" name="email" value="${loginUserInfo.email }" placeholder="예) abc@inu.ac.kr">
-				</div>
-			</div>
-
-			<div>
-				<div>
-					<label for="id" class="label">Phone</label>
-				</div>
-				<div>
-					<select name="phone1">
-						<option value="010" selected>010</option>
-						<option value="011">011</option>
-						<option value="017">017</option>
-					</select> <input type="text" name="phone2" size="12" value="${phone }" placeholder="숫자만">
-				</div>
-			</div>
-
-			<div class="btn">
-				<button type="button" class="btn btn-login" onclick="click_modify()" id="reg_submit">정보수정</button>
-			</div>
-		</form>
 	</div>
-<c:import url="/WEB-INF/views/include/footer.jsp" />
-</body>
-
-</html>

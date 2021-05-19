@@ -1,32 +1,45 @@
 @charset "UTF-8";
 
-html, body {
-	display: block;
-}
-
-.wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 10%;
-}
-
-.title_login {
-	font-size: 30px;
+.fm {
+	padding: 50px;
 	text-align: center;
 }
 
-.forgot_pw {
-	font-size: 12px;
+.fm .title_join {
+	padding: 20px;
+	font-size: 17px;
+	font-weight: 1000;
 	text-align: center;
-	margin-top: 20px;
+	color: #0B615E;
 }
 
-.btn {
-	margin-top: 10px;
-	text-align: center;
+.fm label{
+	display:block;
+	margin:0 120px 0 0;
+
 }
 
-.label {
-	font-size: 12px;
+.fm .label-name{
+	display:block;
+	margin:0 140px 0 0;
+}
+
+.fm .label-pwchk{
+	display:block;
+	margin:0 86px 0 0;
+}
+
+.fm .label-email{
+	display:block;
+	margin:0 144px 0 0;
+}
+
+.fm .label-phone{
+	display:block;
+	margin:0 139px 0 0;
+}
+
+
+.fm .btn {
+	padding:20px;
 }

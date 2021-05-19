@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Join</title>
+<title>회원가입</title>
 <link rel="stylesheet" href="${root }css/index.css">
 <link rel="stylesheet" href="${root }css/join.css">
 <script type="text/javascript" src="${root }js/jquery-3.6.0.min.js"></script>
@@ -14,21 +14,29 @@
 <script>
 	function click_join() {
 
-		var form = document.userInfo;
+		var form = document.user_info;
 
 		if (!form.user_id.value) {
 			alert("아이디를 입력하세요");
 			return false;
 		} else if (!form.user_name.value) {
 			alert("이름을 입력하세요");
+			return false;
+
 		} else if (!form.user_pw.value) {
 			alert("비밀번호를 입력하세요");
+			return false;
+
 		} else if (form.user_pw.value != form.user_pw_check.value) {
 			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+
 		} else if (!form.email.value) {
 			alert("이메일을 입력하세요.");
+			return false;
+
 		} else {
-			document.getElementById('userInfo').submit();
+			document.getElementById('user_info').submit();
 		}
 
 	}
@@ -63,82 +71,91 @@
 			});
 		});
 	</script>
-	<c:import url="/WEB-INF/views/include/header.jsp" />
 	<div class="wrapper">
+		<c:import url="/WEB-INF/views/include/header.jsp" />
 
-		<form action="${root }user/join_ok" method="post" name="userInfo"
-			id="userInfo">
-			<div class="title_login">Join</div>
-			<div>
+		<div>
 
-				<div>
-					<div>
-						<label for="id" class="label">Username</label>
-					</div>
-					<div>
-						<input type="text" name="user_id" id="user_id" required="required">
-						<div id="id_check" style="font-size: 11px; color: red;"></div>
-					</div>
-				</div>
+			<div class="content">
+				<c:import url="/WEB-INF/views/sub.jsp" />
+				<div class="main">
+					<form action="${root }user/join_ok" method="post" name="user_info"
+						id="user_info" class="fm">
+						<div class="title_join">회원가입</div>
+						<div>
 
-				<div>
-					<div>
-						<label for="id" class="label">Name</label>
-					</div>
-					<div>
-						<input type="text" name="user_name">
-					</div>
-				</div>
+							<div>
+								<div>
+									<label for="id" class="label">Username</label>
+								</div>
+								<div>
+									<input type="text" name="user_id" id="user_id"
+										required="required">
+									<div id="id_check" style="font-size: 11px; color: red;"></div>
+								</div>
+							</div>
 
-				<div>
-					<div>
-						<label for="pw" class="label">Password</label>
-					</div>
-					<div>
-						<input type="password" name="user_pw" required="required">
-					</div>
-				</div>
+							<div>
+								<div>
+									<label for="id" class="label-name">Name</label>
+								</div>
+								<div>
+									<input type="text" name="user_name">
+								</div>
+							</div>
 
-				<div>
-					<div>
-						<label for="pw" class="label">Password check</label>
-					</div>
-					<div>
-						<input type="password" name="user_pw_check" required="required">
-					</div>
-				</div>
+							<div>
+								<div>
+									<label for="pw" class="label">Password</label>
+								</div>
+								<div>
+									<input type="password" name="user_pw" required="required">
+								</div>
+							</div>
 
-				<div>
-					<div>
-						<label for="id" class="label">Email</label>
-					</div>
-					<div>
-						<input type="text" name="email" placeholder="예) abc@inu.ac.kr"
-							required="required">
-					</div>
-				</div>
+							<div>
+								<div>
+									<label for="pw" class="label-pwchk">Password check</label>
+								</div>
+								<div>
+									<input type="password" name="user_pw_check" required="required">
+								</div>
+							</div>
 
-				<div>
-					<div>
-						<label for="id" class="label">Phone</label>
-					</div>
-					<div>
-						<select name="phone1">
-							<option value="010">010</option>
-							<option value="011">011</option>
-							<option value="017">017</option>
-						</select> <input type="text" name="phone2" size="12" placeholder="숫자만"
-							required="required">
-					</div>
+							<div>
+								<div>
+									<label for="id" class="label-email">Email</label>
+								</div>
+								<div>
+									<input type="text" name="email" placeholder="예) abc@inu.ac.kr"
+										required="required">
+								</div>
+							</div>
+
+							<div>
+								<div>
+									<label for="id" class="label-phone">Phone</label>
+								</div>
+								<div>
+									<select name="phone1">
+										<option value="010">010</option>
+										<option value="011">011</option>
+										<option value="017">017</option>
+									</select> <input type="text" name="phone2" size="12" placeholder="숫자만"
+										required="required">
+								</div>
+							</div>
+						</div>
+						<div class="btn">
+							<button type="button" class="btn-login"
+								onclick="click_join()" id="reg_submit">회원가입</button>
+						</div>
+
+					</form>
+
 				</div>
 			</div>
-			<div class="btn">
-				<button type="button" class="btn btn-login" onclick="click_join()"
-					id="reg_submit">회원가입</button>
-			</div>
-
-		</form>
-	</div>
+		</div>
+		
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
-</body>
-</html>
+	</div>

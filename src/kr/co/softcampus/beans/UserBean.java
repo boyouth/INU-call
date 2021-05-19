@@ -11,6 +11,8 @@ public class UserBean {
 	private boolean id_exist;
 	private boolean log_in;
 	
+	private String auth_key;
+	
 	public UserBean(){
 		this.id_exist = false;
 		this.log_in= false;
@@ -61,6 +63,14 @@ public class UserBean {
 
 	public void setLog_in(boolean log_in) {
 		this.log_in = log_in;
+	}
+
+	public String getAuth_key() {
+		return auth_key;
+	}
+
+	public void setAuth_key(String auth_key) {
+		this.auth_key = auth_key;
 	}
 
 }

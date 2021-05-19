@@ -5,5 +5,5 @@
 <c:set var="root" value="${pageContext.request.contextPath }/"/>
 <script>
 	alert("잘못된 접근입니다!");
-	location.href="${root}user/login";
+	location.href="${root}main";
 </script>

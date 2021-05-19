@@ -1,5 +1,6 @@
 package kr.co.softcampus.controller;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,7 @@ import kr.co.softcampus.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
+	
 	@Autowired
 	private UserService userService;
 	
@@ -36,7 +38,7 @@ public class UserController {
 	
 	@GetMapping("/login")
 	public String login(@ModelAttribute("tempUserInfo") UserBean tempUserInfo) {
-		
+		if(loginUserInfo.isLog_in()) return "user/error";
 		return "user/login";
 	}
 	
@@ -65,6 +67,7 @@ public class UserController {
 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
+		if(!loginUserInfo.isLog_in()) return "user/error";
 		session.invalidate();
 		loginUserInfo.setLog_in(false);
 		
@@ -74,7 +77,7 @@ public class UserController {
 
 	@GetMapping("/join")
 	public String join(@ModelAttribute("joinUserInfo") UserBean joinUserInfo) {
-
+		if(loginUserInfo.isLog_in()) return "user/error";
 		return "user/join";
 	}
 
@@ -105,4 +108,88 @@ public class UserController {
 
 		return "user/join_ok";
 	}
+	
+	@GetMapping("/user_modify")
+	public String user_modify(@ModelAttribute("modifyUserInfo") UserBean modifyUserInfo, Model model) {
+		if(!loginUserInfo.isLog_in()) return "user/error";
+		
+		
+		userService.getUserInfo_mod(modifyUserInfo);
+		String phone_num = modifyUserInfo.getPhone();
+		String phone = phone_num.substring(3);
+		System.out.println(phone);
+		
+		model.addAttribute("loginUserInfo",modifyUserInfo);
+		model.addAttribute("phone",phone);
+		
+		
+		return "user/user_modify";
+	}
+	
+	@PostMapping("/user_modify_ok")
+	public String user_modify_ok(@Valid @ModelAttribute("modifyUserInfo") UserBean modifyUserInfo, HttpServletRequest request) {
+		
+		String user_id = (String)request.getParameter("user_id");
+		String user_name = (String)request.getParameter("user_name");
+		String user_pw = (String)request.getParameter("user_pw");
+		String email = (String)request.getParameter("email");
+		String phone = (String)request.getParameter("phone1") + request.getParameter("phone2");
+		
+		System.out.println(user_pw + " " + email + " " + phone);
+		
+		modifyUserInfo.setUser_id(user_id);
+		modifyUserInfo.setUser_name(user_name);
+		modifyUserInfo.setUser_pw(user_pw);
+		modifyUserInfo.setEmail(email);
+		modifyUserInfo.setPhone(phone);
+		
+		userService.modifyUserInfo(modifyUserInfo);
+		
+		return "user/user_modify_ok";
+
+		
+	}
+	
+	@GetMapping("/find_id")
+	public String find_id(@ModelAttribute("tempUserInfo") UserBean tempUserInfo) {
+		return "user/find_id";
+	}
+	
+	@PostMapping("/find_id_ok")
+	public String find_id_ok(@Valid @ModelAttribute("tempUserInfo") UserBean tempUserInfo, Model model, HttpServletRequest request){
+		
+		String user_name = (String)request.getParameter("name");
+		String user_email = (String)request.getParameter("email");
+		
+		System.out.println(user_name+" "+user_email);
+		
+		tempUserInfo.setUser_name(user_name);
+		tempUserInfo.setEmail(user_email);
+		
+		boolean check = userService.findUserInfo(tempUserInfo);
+		
+		
+		if(check) {
+			model.addAttribute("name",user_name);
+			model.addAttribute("id",loginUserInfo.getUser_id());
+			
+			return "user/find_id_ok";
+		}
+		else return "user/find_id_fail";
+		// 아이디가 있으면 로그인 페이지로 없으면 아이디찾기페이지로(회원정보가없습니다!!)
+	}
+	
+	@GetMapping("find_pw")
+	public String find_pw(@ModelAttribute("tempUserInfo") UserBean tempUserInfo) {
+		return "user/find_pw";
+	}
+	
+	//이메일인증---------------------------------------------------------------------
+	
+	@PostMapping("find_pw_ok")
+	public String find_pw_ok(@Valid @ModelAttribute("tempUserInfo") UserBean tempUserInfo ,HttpServletRequest request) {
+		return "user/find_pw_ok";
+	}
+	
+	
 }

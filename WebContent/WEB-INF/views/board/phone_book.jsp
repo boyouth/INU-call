@@ -12,46 +12,64 @@
 <link rel="stylesheet" href="${root }css/table.css">
 </head>
 <body>
-	<div class="content_list">
-		<div class="sort">전화번호부</div>
-		<!--게시판 이름-->
-		<hr>
-		<div class="divTable" style="width: 100%; border: 0px solid gray">
-			<div class="divTableBody">
-				<div class="divTableRow_tit">
-					<div class="divTableCell">번호</div>
-					<div class="divTableCell">부서</div>
-					<!-- 부서 일 경우 부서(전화번호)를 표시!-->
-					<div class="divTableCell">작성자</div>
-					<div class="divTableCell">날짜</div>
-				</div>
-				<div class="divTableRow">
-					<div class="divTableCell">1</div>
-					<div class="divTableCell">
-						<a href="">컴퓨터공학부 전화번호부</a>
+<script>
+	function write_new(){
+		location.href="${root}board/write_new_phone";
+	}
+</script>
+	<div class="wrapper">
+		<c:import url="/WEB-INF/views/include/header.jsp" />
+
+		<div>
+
+			<div class="content">
+				<c:import url="/WEB-INF/views/sub.jsp" />
+				<div class="main">
+
+					<div class="content_list">
+						<div class="sort">전화번호부</div>
+						<!--게시판 이름-->
+						<div>
+						
+						</div>
+						<hr>
+						<c:if test="${loginUserInfo.user_id == 'admin' }">
+						<div class="btn-new"><input type="button" onclick="write_new()" value="글쓰기">
+						</div>
+						</c:if>
+						
+						
+						<div class="divTable" style="width: 100%; border: 0px solid gray">
+							<div class="divTableBody">
+								<div class="divTableRow_tit">
+									<div class="divTableCell">번호</div>
+									<div class="divTableCell">부서</div>
+									<!-- 부서 일 경우 부서(전화번호)를 표시!-->
+									<div class="divTableCell">작성자</div>
+									<div class="divTableCell">날짜</div>
+								</div>
+								
+								<c:forEach var="item" items="${phone_book}" > <!--  forEach로 데이터베이스가져오기 -->
+								<c:set var="cnt" value="${cnt+1 }" />
+								<div class="divTableRow">
+									<div class="divTableCell">${cnt}</div>
+									<div class="divTableCell">
+										<a href="${root }board/phone_book_read?list_idx=${item.list_idx}">${item.list_depart }</a>
+									</div>
+									<div class="divTableCell">${item.list_writer_name }</div>
+									<div class="divTableCell">${item.list_date }</div>
+								</div>
+								</c:forEach>
+							</div>
+						</div>
+
 					</div>
-					<div class="divTableCell">관리자</div>
-					<div class="divTableCell">2021-05-14</div>
-				</div>
-				<div class="divTableRow">
-					<div class="divTableCell">2</div>
-					<div class="divTableCell">
-						<a href="">경영학 전화번호부</a>
-					</div>
-					<div class="divTableCell">관리자</div>
-					<div class="divTableCell">2021-05-15</div>
-				</div>
-				<div class="divTableRow">
-					<div class="divTableCell">3</div>
-					<div class="divTableCell">
-						<a href="">정보통신학과 전화번호부</a>
-					</div>
-					<div class="divTableCell">정통닝겐</div>
-					<div class="divTableCell">2021-05-15</div>
+
+
 				</div>
 			</div>
 		</div>
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 	</div>
-</body>
-</html>
+	<!--  -->
