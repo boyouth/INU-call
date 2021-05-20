@@ -12,6 +12,13 @@
 <link rel="stylesheet" href="${root }css/table.css">
 </head>
 <body>
+
+	<script>
+		function write_new() {
+			location.href = "${root}board/write_new_inquire";
+		}
+	</script>
+
 	<div class="wrapper">
 		<c:import url="/WEB-INF/views/include/header.jsp" />
 
@@ -25,10 +32,9 @@
 						<div class="sort">문의게시판</div>
 						<!--게시판 이름-->
 						<hr>
-						<c:if test="${not empty loginUserInfo}">
-						<div class="btn-new"><input type="button"  value="글쓰기">
-						</div>
-						</c:if>
+						<c:if test="${loginUserInfo.user_id != 'admin' }">
+						<div class="btn-new"><input type="button" onclick="write_new()" value="글쓰기"></div></c:if>
+
 						<div class="divTable" style="width: 100%; border: 0px solid gray">
 							<div class="divTableBody">
 								<div class="divTableRow_tit">
@@ -39,35 +45,44 @@
 									<div class="divTableCell">작성자</div>
 									<div class="divTableCell">날짜</div>
 								</div>
-								<div class="divTableRow">
-									<div class="divTableCell">1</div>
-									<div class="divTableCell">오타</div>
-									<div class="divTableCell">
-										<a href="">경영학부 야간 과사 오타 수정바래요.</a>
-									</div>
-									<div class="divTableCell">경영노예</div>
-									<div class="divTableCell">2021-05-14</div>
-								</div>
-								<div class="divTableRow">
-									<div class="divTableCell">2</div>
-									<div class="divTableCell">추가</div>
-									<div class="divTableCell">
-										<a href="">과사 전화 하나 더생김요</a>
-									</div>
-									<div class="divTableCell">인천대인31</div>
-									<div class="divTableCell">2021-05-16</div>
-								</div>
-								<div class="divTableRow">
-									<div class="divTableCell">3</div>
-									<div class="divTableCell">기타</div>
-									<div class="divTableCell">
-										<a href="">총장님 아들 전화번호도 공개해주셈</a>
-									</div>
-									<div class="divTableCell">찐따</div>
-									<div class="divTableCell">2021-05-16</div>
-								</div>
+								<c:if test="${loginUserInfo.user_id == 'admin'}">
+									<c:forEach var="item" items="${inquire_board}">
+										<!--  forEach로 데이터베이스가져오기 -->
+										<c:set var="cnt" value="${cnt+1 }" />
+										<div class="divTableRow">
+											<div class="divTableCell">${cnt}</div>
+											<div class="divTableCell">${item.inquire_type }</div>
+											<div class="divTableCell">
+												<a
+													href="${root }board/inquire_board_read?inquire_idx=${item.inquire_idx}">${item.inquire_title }</a>
+											</div>
+
+											<div class="divTableCell">${item.inquire_writer_name }</div>
+											<div class="divTableCell">${item.inquire_date }</div>
+										</div>
+									</c:forEach>
+								</c:if>
+								<c:if test="${loginUserinfo != 'admin'}">
+								
+									<c:forEach var="item" items="${inquire_board}">							
+										<c:if test="${loginUserInfo.user_id == item.inquire_writer_id }">
+											<c:set var="cnt" value="${cnt+1 }"/>
+											<div class="divTableRow">
+												<div class="divTableCell">${cnt}</div>
+												<div class="divTableCell">${item.inquire_type }</div>
+												<div class="divTableCell">
+													<a href="${root }board/inquire_board_read?inquire_idx=${item.inquire_idx}">${item.inquire_title }</a>
+												</div>
+
+												<div class="divTableCell">${item.inquire_writer_name }</div>
+												<div class="divTableCell">${item.inquire_date }</div>
+											</div>
+										</c:if>
+									</c:forEach>
+								</c:if>
 							</div>
 						</div>
+
 
 					</div>
 

@@ -12,6 +12,11 @@
 <link rel="stylesheet" href="${root }css/table.css">
 </head>
 <body>
+<script>
+	function write_new(){
+		location.href="${root}board/write_new_free";
+	}
+</script>
 	<div class="wrapper">
 		<c:import url="/WEB-INF/views/include/header.jsp" />
 
@@ -26,7 +31,7 @@
 						<!--게시판 이름-->
 						<hr>
 						<c:if test="${not empty loginUserInfo}">
-						<div class="btn-new"><input type="button"  value="글쓰기">
+						<div class="btn-new"><input type="button" onclick="write_new()"  value="글쓰기">
 						</div>
 						</c:if>
 						<div class="divTable" style="width: 100%; border: 0px solid gray">
@@ -38,30 +43,17 @@
 									<div class="divTableCell">작성자</div>
 									<div class="divTableCell">날짜</div>
 								</div>
+								<c:forEach var="item" items="${free_board}" > <!--  forEach로 데이터베이스가져오기 -->
+								<c:set var="cnt" value="${cnt+1 }" />
 								<div class="divTableRow">
-									<div class="divTableCell">1</div>
+									<div class="divTableCell">${cnt}</div>
 									<div class="divTableCell">
-										<a href="">기숙사 일처리 제대로 안하냐</a>
+										<a href="${root }board/free_board_read?free_idx=${item.free_idx}">${item.free_title}</a>
 									</div>
-									<div class="divTableCell">3긱생뎐</div>
-									<div class="divTableCell">2021-05-14</div>
+									<div class="divTableCell">${item.free_writer_name }</div>
+									<div class="divTableCell">${item.free_date }</div>
 								</div>
-								<div class="divTableRow">
-									<div class="divTableCell">2</div>
-									<div class="divTableCell">
-										<a href="">확진자 또나옴 확인 ㄱㄱ</a>
-									</div>
-									<div class="divTableCell">인천대인1</div>
-									<div class="divTableCell">2021-05-16</div>
-								</div>
-								<div class="divTableRow">
-									<div class="divTableCell">3</div>
-									<div class="divTableCell">
-										<a href="">논문쓰는팁공유함.</a>
-									</div>
-									<div class="divTableCell">경영학닝겐</div>
-									<div class="divTableCell">2021-05-16</div>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
 

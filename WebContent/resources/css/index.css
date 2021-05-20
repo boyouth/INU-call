@@ -137,13 +137,11 @@ body {
 	font-weight: 1000;
 }
 
-
-.main .list_title .hit, 
-.main .list_title .date	{
+.main .list_title .hit, .main .list_title .date {
 	display: inline-block;
 }
 
-.main .list_title .writer{
+.main .list_title .writer {
 	display: inline-block;
 }
 
@@ -153,10 +151,11 @@ body {
 	text-align: center;
 }
 
-.main .edit{
-	display:block;
-	text-align:right;
+.main .edit {
+	display: block;
+	text-align: right;
 }
+
 .main .list_content {
 	display: block;
 	padding-bottom: 20px;
@@ -176,7 +175,7 @@ body {
 }
 
 .main .list_comment {
-	padding: 5px 5px 20px 5px;
+	padding: 5px 5px 20px 10px;
 }
 
 .main .list_comment .comment-img {
@@ -190,6 +189,7 @@ body {
 
 .main .list_comment .reply {
 	display: inline-block;
+	padding: 5px 0 0 20px;
 }
 
 .main .list_comment_write div {
