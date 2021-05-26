@@ -26,4 +26,9 @@ public interface UserMapper {
 	
 	@Select("select user_id, user_name from user_info where user_name = #{user_name} and email = #{email}")
 	UserBean findUserInfo(UserBean tempUserInfo);
+	
+	//임시비밀번호
+	@Update("update user_info set user_pw=#{user_pw} where user_id = #{user_id} and email=#{email}")
+	void giveTempPassword(UserBean tempUserInfo);
+	
 }

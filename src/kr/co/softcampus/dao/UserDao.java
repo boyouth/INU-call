@@ -23,17 +23,23 @@ public class UserDao {
 	public UserBean getUserInfo(UserBean tempUserInfo) {
 		return userMapper.getUserInfo(tempUserInfo);
 	}
-	
+
 	public UserBean getUserInfo_mod(String user_id) { // id를 가져오기위해 빈을 반환.
 		return userMapper.getUserInfo_mod(user_id);
 	}
-	
+
 	public void modifyUserInfo(UserBean modifyUserInfo) {
 		userMapper.modifyUserInfo(modifyUserInfo);
 	}
-	
+
 	public UserBean findUserInfo(UserBean tempUserInfo) {
 		return userMapper.findUserInfo(tempUserInfo);
 	}
+
+	public void giveTempPassword(UserBean tempUserInfo) {
+		userMapper.giveTempPassword(tempUserInfo);
+	}
+
+	
 
 }

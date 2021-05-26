@@ -71,6 +71,12 @@ public class UserService {
 		return false;
 	}
 	
+	public void giveTempPassword(UserBean tempUserInfo) {
+		userDao.giveTempPassword(tempUserInfo);
+	}
+	
+	
+	
 	
 	
 }
