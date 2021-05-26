@@ -65,11 +65,10 @@
 					<!-- 관리자만 작성 가능 -->
 					<c:if test="${loginUserInfo.user_id == 'admin' }">
 						<div class="list_comment_write">
-							<form action="${root }board/write_comment" method="post">
+							<form action="${root }board/write_comment_inq" method="post">
 							<input type="hidden" value="${inquire_idx }" name="inquire_idx"/>
 								<div>
-									<textarea id="comment" name="comment" rows="2" cols="60"> 
-    						</textarea>
+									<textarea id="comment" name="comment" rows="2" cols="60"></textarea>
 								</div>
 
 								<div class="btn-comment">

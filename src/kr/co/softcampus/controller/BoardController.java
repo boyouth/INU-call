@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.softcampus.beans.FreeBoardBean;
+import kr.co.softcampus.beans.FreeCommentBean;
 import kr.co.softcampus.beans.InqBoardBean;
 import kr.co.softcampus.beans.InqCommentBean;
+import kr.co.softcampus.beans.PageBean;
 import kr.co.softcampus.beans.PhoneBookBean;
 import kr.co.softcampus.beans.UserBean;
 import kr.co.softcampus.service.BoardService;
@@ -54,12 +56,14 @@ public class BoardController {
 	@GetMapping("/phone_book_read")
 	public String phone_book_read(@RequestParam("list_idx") int list_idx, Model model) {
 
-		if (!loginUserInfo.isLog_in())
-			return "user/error";
-
+		
 		model.addAttribute("list_idx", list_idx);
 
+		
+		int hit = boardService.addPhoneHit(list_idx);
 		PhoneBookBean list_info = boardService.getPhoneBookIdx(list_idx);
+		
+		
 
 		model.addAttribute("list_info", list_info);
 
@@ -69,35 +73,55 @@ public class BoardController {
 	}
 
 	@GetMapping("/free_board")
-	public String free_board(Model model) {
+	public String free_board(@RequestParam(value="page", defaultValue="1") int page ,Model model) {
 
-		List<FreeBoardBean> free_board = boardService.getFreeBoardInfo();
-
+		List<FreeBoardBean> free_board = boardService.getFreeBoardInfo(page);
+		
 		int len = free_board.size();
-
+		
 		for (int i = 0; i < len; i++) {
-			System.out.println(free_board.get(i).getFree_writer_name());
+			int idx = free_board.get(i).getFree_idx();
+			int count_comment = boardService.countFreeComment(idx);
+			free_board.get(i).setFree_comment_cnt(count_comment);
 		}
 
 		model.addAttribute("free_board", free_board);
+		
+		PageBean pageBean = boardService.countFreeContent(page);
+		model.addAttribute("pageBean",pageBean);
+		model.addAttribute("page",page);
 
 		return "board/free_board";
 	}
 
 	@GetMapping("/free_board_read")
-	public String free_board_read(@RequestParam("free_idx") int free_idx, Model model) {
+	public String free_board_read(@RequestParam("free_idx") int free_idx, 
+						@ModelAttribute("freeCommentInfo") FreeCommentBean freeCommentInfo ,Model model) {
 
 		System.out.println(free_idx);
 		if (!loginUserInfo.isLog_in())
 			return "user/error";
 
 		model.addAttribute("free_idx", free_idx);
-
-		FreeBoardBean free_info = boardService.getFreeBoardIdx(free_idx);
+		
+		int hit = boardService.addFreeHit(free_idx);
+		FreeBoardBean free_info = boardService.getFreeBoardIdx(free_idx);		
+		List<FreeCommentBean> free_comment = boardService.getFreeCommentIdx(free_idx);
+		
+		
+		System.out.println(hit);
 
 		model.addAttribute("free_info", free_info);
 
 		System.out.println(free_info.getFree_content());
+		
+		if(free_comment.isEmpty()) {
+			model.addAttribute("empty1","댓글이 없습니다.");
+		}
+		else {
+			model.addAttribute("free_comment",free_comment);
+			model.addAttribute("empty1","");
+		}
 
 		return "board/free_board_read";
 	}
@@ -162,6 +186,9 @@ public class BoardController {
 	
 	@GetMapping("/write_new_inquire")
 	public String write_new_free(@ModelAttribute("inqBoardInfo") InqBoardBean inqBoardInfo) {
+		if (!loginUserInfo.isLog_in())
+			return "user/error";
+
 		return "board/write_new_inquire";
 	}
 	
@@ -240,11 +267,11 @@ public class BoardController {
 		return "board/write_inquire_ok";
 	}
 
-	@PostMapping("/write_comment")
-	public String write_comment(@Valid @ModelAttribute("inqCommentInfo") InqCommentBean inqCommentInfo,
-								@RequestParam("inquire_idx") int inquire_idx, HttpServletRequest request) {
+	@PostMapping("/write_comment_inq")
+	public String write_comment_inq(@Valid @ModelAttribute("inqCommentInfo") InqCommentBean inqCommentInfo,
+								@RequestParam("inquire_idx") int inquire_idx, HttpServletRequest request, Model model) {
 		
-		
+				
 		String inquire_comment = request.getParameter("comment");
 		String comment_writer = loginUserInfo.getUser_name();
 		
@@ -261,7 +288,36 @@ public class BoardController {
 		
 		boardService.addInqComment(inqCommentInfo);
 		
-		return "board/write_comment";
+		model.addAttribute("inquire_idx",inquire_idx);
+		
+		return "board/write_comment_inq";
+		
+	}
+	
+	@PostMapping("/write_comment_free")
+	public String write_comment_inq(@Valid @ModelAttribute("freeCommentInfo") FreeCommentBean freeCommentInfo,
+								@RequestParam("free_idx") int free_idx, HttpServletRequest request, Model model) {
+		
+				
+		String free_comment = request.getParameter("comment");
+		String comment_writer = loginUserInfo.getUser_name();
+		
+		Calendar cal = Calendar.getInstance();
+		Date date = cal.getTime();
+		String comment_date = new SimpleDateFormat("YYYY-MM-dd").format(date);
+		
+		System.out.println(free_idx+"-"+free_comment.trim()+"-"+comment_writer+"-"+comment_date);
+
+		freeCommentInfo.setFree_idx(free_idx);
+		freeCommentInfo.setFree_comment(free_comment.trim());
+		freeCommentInfo.setComment_writer(comment_writer);
+		freeCommentInfo.setComment_date(comment_date);
+		
+		boardService.addFreeComment(freeCommentInfo);
+		
+		model.addAttribute("free_idx",free_idx);
+		
+		return "board/write_comment_free";
 		
 	}
 	
@@ -339,5 +395,7 @@ public class BoardController {
 
 		return "board/inquire_board_delete";
 	}
+	
+	
 
 }

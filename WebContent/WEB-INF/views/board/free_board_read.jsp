@@ -38,7 +38,7 @@
 					<div class="list_title">
 						<div class="tit">${free_info.free_title }</div>
 						<div class="writer">| ${free_info.free_writer_name }</div>
-						<div class="hit">| 조회수 0</div>
+						<div class="hit">| 조회수 ${free_info.free_hit }</div>
 						<div class="date">| 날짜 ${free_info.free_date }</div>
 						
 					</div>
@@ -64,25 +64,34 @@
 
 
 					<div class="btn-emotion">
-						<input type="button" value="공감해요">
+						<input type="button" value="공감해요" onclick="agree()">
 					</div>
 
 					<hr>
+					<c:if test="${empty1 != ''}">
+						<img src="https://img.icons8.com/small/16/000000/topic--v1.png" />
+							${empty1 }
+					</c:if>
+					<c:forEach var="item3" items="${free_comment }">
 					<div class="list_comment">
 						<div class="comment-img">
 							<img src="https://img.icons8.com/small/16/000000/topic--v1.png" />
 						</div>
-						<div class="user_name">젤리</div>
-						<div class="reply">친절하세요.</div>
+						<div class="user_name">${item3.comment_writer }</div>
+						<div class="reply">${item3.free_comment}</div>
 					</div>
+					</c:forEach>
 					<div class="list_comment_write">
-						<div>
-							<textarea id="comment" name="comment" rows="2" cols="60"> 
-    						</textarea>
-						</div>
-						<div class="btn-comment">
-							<input type="button" value="작성하기">
-						</div>
+						<form action="${root }board/write_comment_free" method="post">
+							<input type="hidden" value="${free_idx }" name="free_idx"/>
+								<div>
+									<textarea id="comment" name="comment" rows="2" cols="60"></textarea>
+								</div>
+
+								<div class="btn-comment">
+									<input type="submit" value="작성하기">
+								</div>
+							</form>
 					</div>
 
 

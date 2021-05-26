@@ -8,6 +8,8 @@ public class FreeBoardBean {
 	private String free_writer_id;
 	private String free_writer_name;
 	private String free_date;
+	private int free_hit;
+	private int free_comment_cnt;
 	
 	
 	public int getFree_idx() {
@@ -45,6 +47,18 @@ public class FreeBoardBean {
 	}
 	public void setFree_date(String free_date) {
 		this.free_date = free_date;
+	}
+	public int getFree_comment_cnt() {
+		return free_comment_cnt;
+	}
+	public void setFree_comment_cnt(int free_comment_cnt) {
+		this.free_comment_cnt = free_comment_cnt;
+	}
+	public int getFree_hit() {
+		return free_hit;
+	}
+	public void setFree_hit(int free_hit) {
+		this.free_hit = free_hit;
 	}
 	
 	

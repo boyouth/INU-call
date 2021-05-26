@@ -9,6 +9,7 @@ public class PhoneBookBean {
 	private String list_content;
 	private String list_writer_name;	
 	private String list_date;
+	private int list_hit;
 	
 	public int getList_idx() {
 		return list_idx;
@@ -45,6 +46,12 @@ public class PhoneBookBean {
 	}
 	public void setList_content(String list_content) {
 		this.list_content = list_content;
+	}
+	public int getList_hit() {
+		return list_hit;
+	}
+	public void setList_hit(int list_hit) {
+		this.list_hit = list_hit;
 	}
 	
 	

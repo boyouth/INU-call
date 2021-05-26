@@ -12,11 +12,11 @@
 <link rel="stylesheet" href="${root }css/table.css">
 </head>
 <body>
-<script>
-	function write_new(){
-		location.href="${root}board/write_new_free";
-	}
-</script>
+	<script>
+		function write_new() {
+			location.href = "${root}board/write_new_free";
+		}
+	</script>
 	<div class="wrapper">
 		<c:import url="/WEB-INF/views/include/header.jsp" />
 
@@ -31,8 +31,9 @@
 						<!--게시판 이름-->
 						<hr>
 						<c:if test="${not empty loginUserInfo}">
-						<div class="btn-new"><input type="button" onclick="write_new()"  value="글쓰기">
-						</div>
+							<div class="btn-new">
+								<input type="button" onclick="write_new()" value="글쓰기">
+							</div>
 						</c:if>
 						<div class="divTable" style="width: 100%; border: 0px solid gray">
 							<div class="divTableBody">
@@ -43,20 +44,54 @@
 									<div class="divTableCell">작성자</div>
 									<div class="divTableCell">날짜</div>
 								</div>
-								<c:forEach var="item" items="${free_board}" > <!--  forEach로 데이터베이스가져오기 -->
-								<c:set var="cnt" value="${cnt+1 }" />
-								<div class="divTableRow">
-									<div class="divTableCell">${cnt}</div>
-									<div class="divTableCell">
-										<a href="${root }board/free_board_read?free_idx=${item.free_idx}">${item.free_title}</a>
+								<c:forEach var="item" items="${free_board}">
+									<!--  forEach로 데이터베이스가져오기 -->
+									<c:set var="cnt" value="${cnt+1 }" />
+									<div class="divTableRow">
+										<div class="divTableCell">${cnt}</div>
+										<div class="divTableCell">
+											<a href="${root }board/free_board_read?free_idx=${item.free_idx}">${item.free_title}
+												<c:if test="${item.free_comment_cnt != 0 }">
+												<span style="color: #DF013A;font-size:10px;">[${item.free_comment_cnt}]</span>
+												</c:if>
+											</a>
+										</div>
+										<div class="divTableCell">${item.free_writer_name }</div>
+										<div class="divTableCell">${item.free_date }</div>
 									</div>
-									<div class="divTableCell">${item.free_writer_name }</div>
-									<div class="divTableCell">${item.free_date }</div>
-								</div>
 								</c:forEach>
 							</div>
 						</div>
 
+						<div class="page">
+							<ul class="pagination">
+								<li class="page-item"><a
+									href="${root }board/free_board?page=${pageBean.prevPage}"
+									class="page-link">이전</a></li>
+
+								<c:forEach var='idx' begin="${pageBean.min }"
+									end="${pageBean.max }">
+									<c:choose>
+										<c:when test="${idx == pageBean.currentPage }">
+											<li class="page-item active"><a
+												href="${root }board/free_board?&page=${idx}"
+												class="page-link">${idx }</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a
+												href="${root }board/free_board?&page=${idx}"
+												class="page-link">${idx }</a></li>
+
+										</c:otherwise>
+									</c:choose>
+
+								</c:forEach>
+
+								<li class="page-item"><a
+									href="${root }board/free_board?page=${pageBean.nextPage}"
+									class="page-link">다음</a></li>
+							</ul>
+						</div>
 					</div>
 
 

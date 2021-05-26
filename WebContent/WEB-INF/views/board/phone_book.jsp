@@ -12,11 +12,14 @@
 <link rel="stylesheet" href="${root }css/table.css">
 </head>
 <body>
-<script>
-	function write_new(){
-		location.href="${root}board/write_new_phone";
-	}
-</script>
+	<script>
+		function write_new() {
+			location.href = "${root}board/write_new_phone";
+		}
+		function write_new_phone() {
+			location.href = "${root}board/write_new_inquire";
+		}
+	</script>
 	<div class="wrapper">
 		<c:import url="/WEB-INF/views/include/header.jsp" />
 
@@ -29,16 +32,21 @@
 					<div class="content_list">
 						<div class="sort">전화번호부</div>
 						<!--게시판 이름-->
-						<div>
-						
-						</div>
+						<div></div>
 						<hr>
 						<c:if test="${loginUserInfo.user_id == 'admin' }">
-						<div class="btn-new"><input type="button" onclick="write_new()" value="글쓰기">
-						</div>
+							<div class="btn-new">
+								<input type="button" onclick="write_new()" value="글쓰기">
+							</div>
 						</c:if>
-						
-						
+						<c:if test="${loginUserInfo.user_id != 'admin'}">
+							<div class="btn-new">
+								<input type="button" onclick="write_new_phone()"
+									value="전화번호추가 문의하기">
+							</div>
+						</c:if>
+
+
 						<div class="divTable" style="width: 100%; border: 0px solid gray">
 							<div class="divTableBody">
 								<div class="divTableRow_tit">
@@ -48,21 +56,41 @@
 									<div class="divTableCell">작성자</div>
 									<div class="divTableCell">날짜</div>
 								</div>
-								
-								<c:forEach var="item" items="${phone_book}" > <!--  forEach로 데이터베이스가져오기 -->
-								<c:set var="cnt" value="${cnt+1 }" />
-								<div class="divTableRow">
-									<div class="divTableCell">${cnt}</div>
-									<div class="divTableCell">
-										<a href="${root }board/phone_book_read?list_idx=${item.list_idx}">${item.list_depart }</a>
+
+								<c:forEach var="item" items="${phone_book}">
+									<!--  forEach로 데이터베이스가져오기 -->
+									<c:set var="cnt" value="${cnt+1 }" />
+									<div class="divTableRow">
+										<div class="divTableCell">${cnt}</div>
+										<div class="divTableCell">
+											<a
+												href="${root }board/phone_book_read?list_idx=${item.list_idx}">${item.list_depart }</a>
+										</div>
+										<div class="divTableCell">${item.list_writer_name }</div>
+										<div class="divTableCell">${item.list_date }</div>
 									</div>
-									<div class="divTableCell">${item.list_writer_name }</div>
-									<div class="divTableCell">${item.list_date }</div>
-								</div>
 								</c:forEach>
 							</div>
 						</div>
-
+						<div class="page">
+							<ul class="pagination">
+								<li class="page-item"><a href="#" class="page-link">이전</a>
+								</li>
+								<li class="page-item"><a href="#" class="page-link">1</a></li>
+								<li class="page-item"><a href="#" class="page-link">2</a></li>
+								<li class="page-item"><a href="#" class="page-link">3</a></li>
+								<li class="page-item"><a href="#" class="page-link">4</a></li>
+								<li class="page-item"><a href="#" class="page-link">5</a></li>
+								<li class="page-item"><a href="#" class="page-link">6</a></li>
+								<li class="page-item"><a href="#" class="page-link">7</a></li>
+								<li class="page-item"><a href="#" class="page-link">8</a></li>
+								<li class="page-item"><a href="#" class="page-link">9</a></li>
+								<li class="page-item"><a href="#" class="page-link">10</a>
+								</li>
+								<li class="page-item"><a href="#" class="page-link">다음</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 
 

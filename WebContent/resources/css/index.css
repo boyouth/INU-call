@@ -230,6 +230,13 @@ body {
 	padding-bottom: 30px;
 }
 
+.page{
+	text-align: center;
+}
+
+.page .pagination .page-item{
+	display:inline-block;
+}
 .list_content div {
 	padding: 3px;
 }
