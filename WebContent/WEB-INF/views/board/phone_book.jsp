@@ -72,25 +72,7 @@
 								</c:forEach>
 							</div>
 						</div>
-						<div class="page">
-							<ul class="pagination">
-								<li class="page-item"><a href="#" class="page-link">이전</a>
-								</li>
-								<li class="page-item"><a href="#" class="page-link">1</a></li>
-								<li class="page-item"><a href="#" class="page-link">2</a></li>
-								<li class="page-item"><a href="#" class="page-link">3</a></li>
-								<li class="page-item"><a href="#" class="page-link">4</a></li>
-								<li class="page-item"><a href="#" class="page-link">5</a></li>
-								<li class="page-item"><a href="#" class="page-link">6</a></li>
-								<li class="page-item"><a href="#" class="page-link">7</a></li>
-								<li class="page-item"><a href="#" class="page-link">8</a></li>
-								<li class="page-item"><a href="#" class="page-link">9</a></li>
-								<li class="page-item"><a href="#" class="page-link">10</a>
-								</li>
-								<li class="page-item"><a href="#" class="page-link">다음</a>
-								</li>
-							</ul>
-						</div>
+						
 					</div>
 
 

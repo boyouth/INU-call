@@ -70,6 +70,8 @@ public interface BoardMapper {
 	@Delete("delete from inquire_board where inquire_idx = #{inquire_idx}")
 	void deleteInqBoardInfo(int inquire_idx);
 	
+	
+	
 	//페이지
 	@Select("select count(*) from free_board")
 	int countFreeContent();
