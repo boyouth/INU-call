@@ -3,9 +3,11 @@ package kr.co.softcampus.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -152,6 +154,7 @@ public class UserController {
 	
 	@GetMapping("/find_id")
 	public String find_id(@ModelAttribute("tempUserInfo") UserBean tempUserInfo) {
+		if(loginUserInfo.isLog_in()) return "user/logout";
 		return "user/find_id";
 	}
 	
@@ -181,13 +184,74 @@ public class UserController {
 	
 	@GetMapping("find_pw")
 	public String find_pw(@ModelAttribute("tempUserInfo") UserBean tempUserInfo) {
+		if(loginUserInfo.isLog_in()) return "user/logout";
+
 		return "user/find_pw";
 	}
 	
 	//이메일인증---------------------------------------------------------------------
-	
+	public void sendEmail(UserBean userBean, String div) throws Exception{
+		// Mail Server 설정
+		String charSet = "utf-8";
+		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
+		String hostSMTPid = "testforbo0@gmail.com";
+		String hostSMTPpwd = "checkingbo0";
+
+		// 보내는 사람 EMail, 제목, 내용
+		String fromEmail = "inucall@inu.ac.kr";
+		String fromName = "관리자";
+		String subject = "";
+		String msg = "";
+
+		if(div.equals("findpw")) {
+			subject = "INU@Call 임시 비밀번호 입니다.";
+			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+			msg += "<h3 style='color: #086A87;'>";
+			msg += userBean.getUser_id() + "님의 임시 비밀번호 입니다.<br>임시비밀번호를 사용하여 로그인 후 비밀번호를 변경하여 사용하세요.</h3>";
+			msg += "<p>임시 비밀번호 : ";
+			msg += userBean.getUser_pw() + "</p></div>";
+		}
+
+		// 받는 사람 E-Mail 주소
+		String mail = userBean.getEmail();
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSL(true);
+			email.setHostName(hostSMTP);
+			email.setSmtpPort(465); //네이버 이용시 587
+
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setTLS(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg(msg);
+			email.send();
+		} catch (Exception e) {
+			System.out.println("메일발송 실패 : " + e);
+		}
+	}
 	@PostMapping("find_pw_ok")
-	public String find_pw_ok(@Valid @ModelAttribute("tempUserInfo") UserBean tempUserInfo ,HttpServletRequest request) {
+	public String find_pw_ok(@Valid @ModelAttribute("tempUserInfo") UserBean tempUserInfo ,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		boolean check = userService.findUserInfo(tempUserInfo);
+		
+		if(check) {
+			String pw="";
+			for(int i=0;i<7;i++) {
+				pw += (char) ((Math.random()*26) + 97);
+			}
+			for(int i=0;i<3;i++) {
+				pw += (int)((Math.random()*10) + 1);
+			}
+			
+			tempUserInfo.setUser_pw(pw);
+			userService.giveTempPassword(tempUserInfo);
+			sendEmail(tempUserInfo, "findpw");
+			
+		}
 		return "user/find_pw_ok";
 	}
 	
