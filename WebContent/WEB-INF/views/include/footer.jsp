@@ -5,8 +5,6 @@
 <c:set var="root" value="${pageContext.request.contextPath }/" />
 <!--footer-->
 <div class="footer">
-	<p>프로젝트 복습</p>
-	<p>boyeong</p>
 </div>
 </body>
 </html>

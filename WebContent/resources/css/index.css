@@ -17,15 +17,10 @@ body {
 	margin: 0 auto;
 }
 
-.wrapper .footer {
-	background-color: #c7c7c7;
-	text-align: center;
-	font-size: 12px;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	padding: 15px 0;
+/* .wrapper .footer {
+	
 }
+ */
 
 .nav-container {
 	display: flex;
@@ -230,13 +225,14 @@ body {
 	padding-bottom: 30px;
 }
 
-.page{
+.page {
 	text-align: center;
 }
 
-.page .pagination .page-item{
-	display:inline-block;
+.page .pagination .page-item {
+	display: inline-block;
 }
+
 .list_content div {
 	padding: 3px;
 }
