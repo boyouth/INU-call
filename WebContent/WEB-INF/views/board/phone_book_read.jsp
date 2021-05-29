@@ -14,12 +14,12 @@
 <body>
 <script>
 	function edit(){
-		location.href="${root}board/phone_book_edit?title=${list_info.list_depart}&list_idx=${list_idx}"
+		location.href="${root}board/phone_book_edit?" 
 	}
 	
 	function del(){
 		if(confirm("삭제하시겠습니까?")){
-			location.href="${root}board/phone_book_delete?list_idx=${list_idx}"
+			location.href="${root}board/phone_book_delete?"
 		}
 		else{
 			location.reload();
@@ -36,21 +36,12 @@
 				<div class="main">
 
 					<div class="list_title">
-						<div class="tit">${list_info.list_depart } 전화번호</div>
-						<div class="writer">| ${list_info.list_writer_name }</div>
-						<div class="hit">| 조회수 ${list_info.list_hit }</div>
-						<div class="date">| 날짜 ${list_info.list_date }</div>
-						
+						<div class="tit">${school } 전화번호</div>
 					</div>
 					<hr style="border: 1px color=silver;">
-					<c:if test="${loginUserInfo.user_id == list_info.list_writer_id }">
-					<div class="edit">
-					<input type="button" value="수정하기" onclick="edit()"/>
-					<input type="button" value="삭제하기" onclick="del()"/>					
-					</div>
-					</c:if>
+					
 					<div class="note">
-						<div  style="color: #B40431;">잘못된 전화번호가 등록되었거나 변경되었다면 문의게시판에 남겨주세요.</div><!-- 전화번호부 -->
+						<div  style="color: #B40431;font-size:10px">잘못된 전화번호가 등록되었거나 변경되었다면 문의게시판에 남겨주세요.</div><!-- 전화번호부 -->
 						<!-- <div>
 							본인의 글은 <span style="color: red;">직접 삭제</span>가 가능합니다.
 						</div> -->
@@ -58,7 +49,10 @@
 					</div>
 
 					<div class="list_content">
-						<div>${list_info.list_content }</div>
+					<c:forEach var="item" items="${ majors}">
+						<div>${item.major} | <span style="color:#8000FF">${item.phone }</span> - ${item.commentary }</div>
+					</c:forEach>
+						
 
 					</div>
 					<hr style="border: 1px color=silver;">
@@ -70,7 +64,7 @@
 					</div>
 
 					<hr>
-					
+					<div style="text-align:right"><a href="${root}board/phone_book">목록으로</a></div>
 
 
 				</div>

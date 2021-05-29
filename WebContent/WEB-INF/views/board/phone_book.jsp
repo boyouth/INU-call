@@ -30,7 +30,7 @@
 				<div class="main">
 
 					<div class="content_list">
-						<div class="sort">전화번호부</div>
+						<div class="sort">대학별 전화번호</div>
 						<!--게시판 이름-->
 						<div></div>
 						<hr>
@@ -39,7 +39,7 @@
 								<input type="button" onclick="write_new()" value="글쓰기">
 							</div>
 						</c:if>
-						<c:if test="${loginUserInfo.user_id != 'admin'}">
+						<c:if test="${not empty loginUserInfo and loginUserInfo.user_id != 'admin' }">
 							<div class="btn-new">
 								<input type="button" onclick="write_new_phone()"
 									value="전화번호추가 문의하기">
@@ -51,10 +51,8 @@
 							<div class="divTableBody">
 								<div class="divTableRow_tit">
 									<div class="divTableCell">번호</div>
-									<div class="divTableCell">부서</div>
+									<div class="divTableCell">소속</div>
 									<!-- 부서 일 경우 부서(전화번호)를 표시!-->
-									<div class="divTableCell">작성자</div>
-									<div class="divTableCell">날짜</div>
 								</div>
 
 								<c:forEach var="item" items="${phone_book}">
@@ -64,10 +62,8 @@
 										<div class="divTableCell">${cnt}</div>
 										<div class="divTableCell">
 											<a
-												href="${root }board/phone_book_read?list_idx=${item.list_idx}">${item.list_depart }</a>
+												href="${root }board/phone_book_read?school=${item.school}">${item.school }</a>
 										</div>
-										<div class="divTableCell">${item.list_writer_name }</div>
-										<div class="divTableCell">${item.list_date }</div>
 									</div>
 								</c:forEach>
 							</div>

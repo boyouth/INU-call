@@ -12,7 +12,7 @@
 	<!-- 계속 고정되는 부분. sub content?.html-->
 	<div class="search">
 		<div>
-			<label for="phone" class="label-phone">전화번호/검색어 입력↓</label>
+			<label for="phone" class="label-phone">검색어 입력↓</label>
 		</div>
 		<div>
 			<input type="text" name="phone" size="15"> <input
@@ -20,13 +20,13 @@
 		</div>
 		<div class="menu">
 			<div>
-				<a href="">현재 등록된 부서 보기</a>
+				<a href="http://www.inu.ac.kr/"><img src="${root}image/inu_logo.PNG">우리 학교 사이트 바로가기</a>
 			</div>
 			<div>
-				<a href="">현재 등록된 전화번호 보기</a>
+				<a href="${root }board/phone_book_all"><img src="https://img.icons8.com/officexs/16/000000/view-details.png"/> 전화번호 전부 보기</a>
 			</div>
 			<div>
-				<a href="">내가 부서 등록하기</a>
+				<a href=""><img src="https://img.icons8.com/small/16/000000/share.png"/> 이 사이트 공유하기</a>
 			</div>
 		</div>
 	</div>

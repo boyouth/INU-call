@@ -24,12 +24,12 @@
 
 					<div class="main-slogan">
 
-						<div>몰랐다고 하는 것은 여기까지만 하자.</div>
-						<div>넌 이제 중학생, 고등학생이 아닌 대학생이다.</div>
+						<div>몰랐다고 하는 것은 여기까지.</div>
+						<div>당신은 이제 어엿한 대학생, 성인!</div>
 						<div>
-							망설이지 말고 <span class="doit">전화하라.</span>
+							망설이지 말고 <span class="doit">전화하자.</span>
 						</div>
-						<div class="goal">대학, 편하게 누리며 생활하자</div>
+						<div class="goal">누릴거 다 누리고 졸업하자!</div>
 					</div>
 
 
