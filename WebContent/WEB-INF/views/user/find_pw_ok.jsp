@@ -5,5 +5,5 @@
 <!DOCTYPE html>
 <script>
 	alert("임시비밀번호가 이메일로 전송되었습니다.");
-	location.href = "${root}user/login";
+	location.href = "${root}user/login?check=${check}";
 </script>

@@ -43,6 +43,7 @@
 				<c:import url="/WEB-INF/views/sub.jsp" />
 				<div class="main">
 					<form action="${root }user/find_pw_ok" method="post" class="fm" name="fm" id="fm">
+					<input type="hidden" name="check" id="check" value="findpw" />
 						<div class="title_find_id">비밀번호 찾기</div>
 
 						<div class="note">회원 가입 시 입력한 본인 정보를 입력해주세요.</div>
