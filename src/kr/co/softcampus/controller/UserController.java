@@ -185,7 +185,8 @@ public class UserController {
 	@GetMapping("find_pw")
 	public String find_pw(@ModelAttribute("tempUserInfo") UserBean tempUserInfo) {
 		if(loginUserInfo.isLog_in()) return "user/logout";
-
+		
+		
 		return "user/find_pw";
 	}
 	
@@ -234,9 +235,14 @@ public class UserController {
 		}
 	}
 	@PostMapping("find_pw_ok")
-	public String find_pw_ok(@Valid @ModelAttribute("tempUserInfo") UserBean tempUserInfo ,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String find_pw_ok(@Valid @ModelAttribute("tempUserInfo") UserBean tempUserInfo ,HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		boolean check = userService.findUserInfo(tempUserInfo);
+		
+		String chk = request.getParameter("check");
+		if(chk.equals("findpw")) {
+			model.addAttribute("check",chk);
+		}
 		
 		if(check) {
 			String pw="";
