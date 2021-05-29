@@ -25,8 +25,13 @@ public class BoardService {
 	private int page_pagination = 10;
 	
 	
+
 	public List<PhoneBookBean> getPhoneBookInfo(){
 		return boardDao.getPhoneBookInfo();
+	}
+	
+	public List<PhoneBookBean> getPhoneBookInfoAll(){
+		return boardDao.getPhoneBookInfoAll();
 	}
 	
 	public List<FreeBoardBean> getFreeBoardInfo(int page){
@@ -40,10 +45,10 @@ public class BoardService {
 		return boardDao.getInqBoardInfo();
 	}
 	
-	public PhoneBookBean getPhoneBookIdx(int list_idx) {
-		return boardDao.getPhoneBookIdx(list_idx);
+	public List<PhoneBookBean> readPhoneBook(String school) {
+		return boardDao.readPhoneBook(school);
 	}
-	
+
 	public FreeBoardBean getFreeBoardIdx(int free_idx) {
 		return boardDao.getFreeBoardIdx(free_idx);
 	}
@@ -52,10 +57,7 @@ public class BoardService {
 		return boardDao.getInqBoardIdx(inquire_idx);
 	}
 	
-	
-	public void addPhoneBookInfo(PhoneBookBean tempBoardBean) {
-		boardDao.addPhoneBookInfo(tempBoardBean);
-	}
+
 
 	public void addFreeBoardInfo(FreeBoardBean tempBoardBean) {
 		boardDao.addFreeBoardInfo(tempBoardBean);
@@ -65,18 +67,13 @@ public class BoardService {
 		boardDao.addInqBoardInfo(tempBoardBean);
 	}
 	
-	public void editPhoneBookInfo(PhoneBookBean tempBoardBean) {
-		boardDao.editPhoneBookInfo(tempBoardBean);
-	}
+
 	
 	public void editFreeBoardInfo(FreeBoardBean tempBoardBean) {
 		boardDao.editFreeBoardInfo(tempBoardBean);
 	}
 	
-	public void deletePhoneBookInfo(int list_idx) {
-		boardDao.deletePhoneBookInfo(list_idx);
-	}
-	
+
 	public void deleteFreeBoardInfo(int free_idx) {
 		boardDao.deleteFreeBoardInfo(free_idx);
 	}
@@ -123,8 +120,5 @@ public class BoardService {
 	public int addFreeAgree(int free_idx) {
 		return boardDao.addFreeAgree(free_idx);
 	}
-	
-	public int addPhoneHit(int list_idx) {
-		return boardDao.addPhoneHit(list_idx);
-	}
+
 }

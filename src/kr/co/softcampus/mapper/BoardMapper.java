@@ -16,10 +16,13 @@ import kr.co.softcampus.beans.PhoneBookBean;
 
 public interface BoardMapper {
 
-	@Select("select a1.list_idx, a1.list_depart, a1.list_writer_id, a2.user_name as list_writer_name, a1.list_date "
-			+ "from phone_book a1, user_info a2 where a1.list_writer_id = a2.user_id" + " order by list_idx desc")
+	
+	@Select("select distinct(school) from inu_info order by school asc")
 	List<PhoneBookBean> getPhoneBookInfo();
-
+	
+	@Select("select school, major, phone, commentary from inu_info order by school asc")
+	List<PhoneBookBean> getPhoneBookInfoAll();	
+	
 	@Select("select a1.free_idx, a1.free_title, a1.free_writer_id, a2.user_name as free_writer_name, a1.free_date "
 			+ "from free_board a1, user_info a2 where a1.free_writer_id = a2.user_id" + " order by free_idx desc")
 	List<FreeBoardBean> getFreeBoardInfo(RowBounds rowBounds);
@@ -29,10 +32,9 @@ public interface BoardMapper {
 			+ " order by inquire_idx desc")
 	List<InqBoardBean> getInqBoardInfo();
 
-	@Select("select a1.list_idx, a1.list_depart, a1.list_content, a1.list_writer_id, a2.user_name as list_writer_name, a1.list_date, a1.list_hit "
-			+ "from phone_book a1, user_info a2 where a1.list_writer_id = a2.user_id "
-			+ "and a1.list_idx = #{list_idx}")
-	PhoneBookBean getPhoneBookIdx(int list_idx);
+
+	@Select("select school, major, phone, commentary from inu_info where school = #{school}")
+	List<PhoneBookBean> readPhoneBook(String school);
 
 	@Select("select a1.free_idx, a1.free_title, a1.free_content, a1.free_writer_id, a2.user_name as free_writer_name, a1.free_date, a1.free_hit "
 			+ "from free_board a1, user_info a2 where a1.free_writer_id = a2.user_id "
@@ -43,9 +45,7 @@ public interface BoardMapper {
 			+ "from inquire_board a1, user_info a2 where a1.inquire_writer_id = a2.user_id and a1.inquire_idx = #{inquire_idx}")
 	InqBoardBean getInqBoardIdx(int inquire_idx);
 
-	@Insert("insert into phone_book (list_idx, list_depart, list_content, list_writer_id, list_date) "
-			+ "values (list_seq.nextval, #{list_depart}, #{list_content}, #{list_writer_id}, #{list_date}) ")
-	void addPhoneBookInfo(PhoneBookBean tempBoardBean);
+	
 
 	@Insert("insert into free_board (free_idx, free_title, free_content, free_writer_id, free_date) "
 			+ "values (free_seq.nextval, #{free_title}, #{free_content}, #{free_writer_id}, #{free_date}) ")
@@ -55,14 +55,12 @@ public interface BoardMapper {
 			+ "values (inq_seq.nextval, #{inquire_type}, #{inquire_title}, #{inquire_content}, #{inquire_writer_id}, #{inquire_date}) ")
 	void addInqBoardInfo(InqBoardBean tempBoardBean);
 
-	@Update("update phone_book set list_content = #{list_content} where list_idx = #{list_idx}")
-	void editPhoneBookInfo(PhoneBookBean tempBoardBean);
+
 
 	@Update("update free_board set free_content = #{free_content} where free_idx = #{free_idx}")
 	void editFreeBoardInfo(FreeBoardBean tempBoardBean);
 
-	@Delete("delete from phone_book where list_idx = #{list_idx}")
-	void deletePhoneBookInfo(int list_idx);
+
 
 	@Delete("delete from free_board where free_idx = #{free_idx}")
 	void deleteFreeBoardInfo(int free_idx);
@@ -109,9 +107,7 @@ public interface BoardMapper {
 	@Update("update free_board set free_agree = free_agree + 1 where free_idx = #{free_idx}")
 	int addFreeAgree(int free_idx);
 
-	// phone-book read 호출 시 hit 1증가
-	@Update("update phone_book set list_hit = list_hit + 1 where list_idx = #{list_idx}")
-	int addPhoneHit(int list_idx);
+
 	
 	
 }

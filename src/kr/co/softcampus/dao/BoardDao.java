@@ -18,8 +18,13 @@ public class BoardDao {
 	@Autowired
 	private BoardMapper boardMapper;
 
-	public List<PhoneBookBean> getPhoneBookInfo() {
+
+	public List<PhoneBookBean> getPhoneBookInfo(){
 		return boardMapper.getPhoneBookInfo();
+	}
+	
+	public List<PhoneBookBean> getPhoneBookInfoAll(){
+		return boardMapper.getPhoneBookInfoAll();
 	}
 
 	public List<FreeBoardBean> getFreeBoardInfo(RowBounds rowBounds) {
@@ -30,8 +35,8 @@ public class BoardDao {
 		return boardMapper.getInqBoardInfo();
 	}
 
-	public PhoneBookBean getPhoneBookIdx(int list_idx) {
-		return boardMapper.getPhoneBookIdx(list_idx);
+	public List<PhoneBookBean> readPhoneBook(String school) {
+		return boardMapper.readPhoneBook(school);
 	}
 
 	public FreeBoardBean getFreeBoardIdx(int free_idx) {
@@ -42,9 +47,6 @@ public class BoardDao {
 		return boardMapper.getInqBoardIdx(inquire_idx);
 	}
 
-	public void addPhoneBookInfo(PhoneBookBean tempBoardBean) {
-		boardMapper.addPhoneBookInfo(tempBoardBean);
-	}
 
 	public void addFreeBoardInfo(FreeBoardBean tempBoardBean) {
 		boardMapper.addFreeBoardInfo(tempBoardBean);
@@ -54,17 +56,12 @@ public class BoardDao {
 		boardMapper.addInqBoardInfo(tempBoardBean);
 	}
 
-	public void editPhoneBookInfo(PhoneBookBean tempBoardBean) {
-		boardMapper.editPhoneBookInfo(tempBoardBean);
-	}
 
 	public void editFreeBoardInfo(FreeBoardBean tempBoardBean) {
 		boardMapper.editFreeBoardInfo(tempBoardBean);
 	}
 
-	public void deletePhoneBookInfo(int list_idx) {
-		boardMapper.deletePhoneBookInfo(list_idx);
-	}
+
 
 	public void deleteFreeBoardInfo(int free_idx) {
 		boardMapper.deleteFreeBoardInfo(free_idx);
@@ -106,10 +103,6 @@ public class BoardDao {
 	
 	public int addFreeAgree(int free_idx) {
 		return boardMapper.addFreeAgree(free_idx);
-	}
-
-	public int addPhoneHit(int list_idx) {
-		return boardMapper.addPhoneHit(list_idx);
 	}
 
 }

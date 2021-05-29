@@ -41,37 +41,39 @@ public class BoardController {
 	public String phone_book(Model model) {
 
 		List<PhoneBookBean> phone_book = boardService.getPhoneBookInfo();
-
-		int len = phone_book.size();
-
-		for (int i = 0; i < len; i++) {
-			System.out.println(phone_book.get(i).getList_writer_name());
-		}
-
-		model.addAttribute("phone_book", phone_book);
-
+		model.addAttribute("phone_book",phone_book);
+		
+		
 		return "board/phone_book";
 	}
-
+	
+	@GetMapping("/phone_book_all")
+	public String phone_book_all(Model model) {
+		
+		List<PhoneBookBean> all = boardService.getPhoneBookInfoAll();
+		model.addAttribute("all_info",all);
+		
+		return "board/phone_book_all";
+	}
+	
 	@GetMapping("/phone_book_read")
-	public String phone_book_read(@RequestParam("list_idx") int list_idx, Model model) {
+	public String phone_book_read(@RequestParam("school") String school, Model model) {
 
+		System.out.println(school);
 		
-		model.addAttribute("list_idx", list_idx);
-
+		List<PhoneBookBean> majors = boardService.readPhoneBook(school);
 		
-		int hit = boardService.addPhoneHit(list_idx);
-		PhoneBookBean list_info = boardService.getPhoneBookIdx(list_idx);
+		for(int i=0;i<majors.size();i++) {
+			System.out.println(majors.get(i).getMajor());
+		}
+		model.addAttribute("school",school);
+		model.addAttribute("majors",majors);	
 		
-		
-
-		model.addAttribute("list_info", list_info);
-
-		System.out.println(list_info.getList_content());
 
 		return "board/phone_book_read";
 	}
 
+	
 	@GetMapping("/free_board")
 	public String free_board(@RequestParam(value="page", defaultValue="1") int page ,Model model) {
 
@@ -197,22 +199,7 @@ public class BoardController {
 	public String write_phone_ok(@Valid @ModelAttribute("phoneBookInfo") PhoneBookBean phoneBookInfo,
 			HttpServletRequest request) {
 
-		String user_id = (String) request.getParameter("user_id");
-		String list_depart = (String) request.getParameter("title");
-		String list_content = (String) request.getParameter("content");
-
-		Calendar cal = Calendar.getInstance();
-		Date date = cal.getTime();
-		String list_date = new SimpleDateFormat("YYYY-MM-dd").format(date);
-
-		System.out.println(user_id + " " + list_depart + " " + list_content + " " + list_date);
-
-		phoneBookInfo.setList_writer_id(user_id);
-		phoneBookInfo.setList_depart(list_depart);
-		phoneBookInfo.setList_content(list_content);
-		phoneBookInfo.setList_date(list_date);
-
-		boardService.addPhoneBookInfo(phoneBookInfo);
+		
 
 		return "board/write_phone_ok";
 	}
@@ -345,14 +332,7 @@ public class BoardController {
 	@PostMapping("/edit_phone_ok")
 	public String edit_phone_ok(@Valid @ModelAttribute("phoneBookInfo") PhoneBookBean phoneBookInfo,
 			@RequestParam("list_idx") int list_idx, HttpServletRequest request, Model model) {
-		model.addAttribute("list_idx", list_idx);
-
-		String list_content = (String) request.getParameter("content");
-
-		phoneBookInfo.setList_idx(list_idx);
-		phoneBookInfo.setList_content(list_content);
-
-		boardService.editPhoneBookInfo(phoneBookInfo);
+		
 
 		return "board/edit_phone_ok";
 	}
@@ -375,7 +355,6 @@ public class BoardController {
 	@GetMapping("/phone_book_delete")
 	public String phone_book_delete(@RequestParam("list_idx") int list_idx) {
 
-		boardService.deletePhoneBookInfo(list_idx);
 
 		return "board/phone_book_delete";
 	}
