@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="stylesheet" href="${root }css/index.css">
@@ -27,6 +28,12 @@
 
 		}
 		
+		function enterkey(){
+			if (window.event.keyCode == 13){
+				click_login();
+			}
+		}
+		
 	</script>
 
 	<div class="wrapper">
@@ -47,7 +54,7 @@
 								<label for="id" class="label-id">Username</label>
 							</div>
 							<div>
-								<input type="text" name="user_id">
+								<input type="text" name="user_id" id="user_id">
 							</div>
 						</div>
 
@@ -56,7 +63,7 @@
 								<label for="pw" class="label-pw">Password</label>
 							</div>
 							<div>
-								<input type="password" name="user_pw">
+								<input type="password" name="user_pw" id="user_pw" onkeyup="enterkey()">
 							</div>
 						</div>
 						<div class="forgot_pw">
