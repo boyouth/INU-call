@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.session.RowBounds;
 
 import kr.co.softcampus.beans.FreeBoardBean;
 import kr.co.softcampus.beans.FreeCommentBean;
+import kr.co.softcampus.beans.FreeLikeBean;
 import kr.co.softcampus.beans.InqBoardBean;
 import kr.co.softcampus.beans.InqCommentBean;
 import kr.co.softcampus.beans.PhoneBookBean;
@@ -103,9 +105,31 @@ public interface BoardMapper {
 	@Update("update free_board set free_hit = free_hit + 1 where free_idx = #{free_idx}")
 	int addFreeHit(int free_idx);
 	
-	// free-board read에서 공감해요 클릭 시 해당 게시물(free_idx)의 좋아요(free_agree) 수 증가
-	@Update("update free_board set free_agree = free_agree + 1 where free_idx = #{free_idx}")
-	int addFreeAgree(int free_idx);
+	
+	
+	// search
+	@Select("select school, major, phone, commentary from inu_info where school like '%'||#{word}||'%' or major like '%'||#{word}||'%' ")
+	List<PhoneBookBean> searchAll(String word);
+	
+	// 자유게시판 좋아요.
+	// 해당 사용자가 좋아요를 누른적이 있는지. 체크
+	@Select("select free_idx, user_id, likey from free_like where free_idx = #{arg0} and user_id=#{arg1}")
+	List<FreeLikeBean> getFreeLikeInfo(int free_idx, String user_id);
+	
+	
+	//like insert - 좋아요를 한적이 없을 경우
+	@Insert("insert into free_like (free_idx, user_id, likey) values (#{free_idx},#{user_id},#{likey})")
+	int addFreeLike(FreeLikeBean temp);
+	
+	
+	// like edit - 좋아요를 한적이 있을 경우
+	@Update("update free_like set likey = #{arg0} where free_idx = #{arg1} and user_id=#{arg2}")
+	int editFreeLike(int likey, int free_idx, String user_id);
+	
+	// 좋아요 받은 총 개수 표시하기
+	@Select("select count(*) from free_like where free_idx=#{free_idx} and likey = 1")
+	int countFreeLike(int free_idx);
+	
 
 
 	

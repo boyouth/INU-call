@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.softcampus.beans.FreeBoardBean;
 import kr.co.softcampus.beans.FreeCommentBean;
+import kr.co.softcampus.beans.FreeLikeBean;
 import kr.co.softcampus.beans.InqBoardBean;
 import kr.co.softcampus.beans.InqCommentBean;
 import kr.co.softcampus.beans.PhoneBookBean;
@@ -101,8 +102,29 @@ public class BoardDao {
 		return boardMapper.addFreeHit(free_idx);
 	}
 	
-	public int addFreeAgree(int free_idx) {
-		return boardMapper.addFreeAgree(free_idx);
+	
+	
+	public List<PhoneBookBean> searchAll(String word){
+		return boardMapper.searchAll(word);
+	}
+	
+	
+	
+	public List<FreeLikeBean> getFreeLikeInfo(int free_idx, String user_id) {
+		return boardMapper.getFreeLikeInfo(free_idx,user_id);
+	}
+
+	
+	public int addFreeLike(FreeLikeBean temp) {
+		return boardMapper.addFreeLike(temp);
+	}
+
+	public int editFreeLike(int likey, int free_idx, String user_id) {
+		return boardMapper.editFreeLike(likey, free_idx, user_id);
+	}
+	
+	public int countFreeLike(int free_idx) {
+		return boardMapper.countFreeLike(free_idx);
 	}
 
 }

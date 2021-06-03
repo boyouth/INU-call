@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.softcampus.beans.FreeBoardBean;
 import kr.co.softcampus.beans.FreeCommentBean;
+import kr.co.softcampus.beans.FreeLikeBean;
 import kr.co.softcampus.beans.InqBoardBean;
 import kr.co.softcampus.beans.InqCommentBean;
 import kr.co.softcampus.beans.PageBean;
@@ -117,8 +118,27 @@ public class BoardService {
 		return boardDao.addFreeHit(free_idx);
 	}
 	
-	public int addFreeAgree(int free_idx) {
-		return boardDao.addFreeAgree(free_idx);
+	
+
+	public List<PhoneBookBean> searchAll(String word){
+		return boardDao.searchAll(word);
+	}
+	
+	public List<FreeLikeBean> getFreeLikeInfo(int free_idx, String user_id) {
+		return boardDao.getFreeLikeInfo(free_idx,user_id);
+	}
+
+	
+	public int addFreeLike(FreeLikeBean temp) {
+		return boardDao.addFreeLike(temp);
+	}
+
+	public int editFreeLike(int likey, int free_idx, String user_id) {
+		return boardDao.editFreeLike(likey, free_idx, user_id);
+	}
+	
+	public int countFreeLike(int free_idx) {
+		return boardDao.countFreeLike(free_idx);
 	}
 
 }
