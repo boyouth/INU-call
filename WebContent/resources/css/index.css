@@ -91,7 +91,7 @@ body {
 }
 
 .content .sub .search {
-	padding: 10px 0 10px 0;
+	padding: 10px 0 0 0;
 }
 
 .content .sub .menu {
@@ -157,10 +157,15 @@ body {
 	text-align: center;
 }
 
-.main .btn-emotion {
+.main .btn-like {
 	padding: 5px;
 	text-align: center;
 }
+
+.main .btn-like .likey{
+	color:#FFFFFF;
+}
+
 
 .main .list_comment_write {
 	display: block;
@@ -180,6 +185,10 @@ body {
 .main .list_comment .user_name {
 	display: inline-block;
 	font-weight: 1000;
+}
+.main .list_comment .datetime{
+	font-size:9px;
+	padding-left: 3px;
 }
 
 .main .list_comment .reply {
@@ -245,3 +254,6 @@ body {
 .content a:hover {
 	color: rgb(3, 131, 182);
 }
+
+
+
