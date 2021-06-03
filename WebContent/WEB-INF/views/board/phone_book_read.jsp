@@ -58,9 +58,8 @@
 					<hr style="border: 1px color=silver;">
 
 
-					<div class="btn-emotion">
-						<input type="button" value="좋아요"> <input type="button"
-							value="친절해요"> <input type="button" value="불친절해요">
+					<div class="btn-like"> <input type="button"
+							value="친절해요">
 					</div>
 
 					<hr>
