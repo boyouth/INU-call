@@ -106,22 +106,25 @@
 
 					<div class="btn-like">
 						<a href="javascript:void(0);" onclick="agree()">
-							<div id="likey" name="likey" class="likey">
-							${like }
-							</div>
-							<c:if test="${like == 0 }">
-							<img id="heart" src="https://img.icons8.com/material-outlined/24/4a90e2/filled-like.png"/>
+							<div id="likey" name="likey" class="likey">${like }</div> <c:if
+								test="${like == 0 }">
+								<img id="heart"
+									src="https://img.icons8.com/material-outlined/24/4a90e2/filled-like.png" />
+							</c:if> <c:if test="${like == 1 }">
+								<img id="heart"
+									src="https://img.icons8.com/material-rounded/24/4a90e2/filled-like.png" />
 							</c:if>
-							<c:if test="${like == 1 }">
-							<img id="heart" src="https://img.icons8.com/material-rounded/24/4a90e2/filled-like.png"/>
-							</c:if>
-							
+
 						</a>
 
 						<div id="all_likes" class="all_likes">${count_like }</div>
 					</div>
 
 					<hr>
+					<div style="text-align: right">
+						<a href="javascript:history.back()">이전 페이지</a>
+					</div>
+
 					<c:if test="${empty1 != ''}">
 						<img src="https://img.icons8.com/small/16/000000/topic--v1.png" />
 							${empty1 }
@@ -133,7 +136,7 @@
 							</div>
 							<div class="user_name">${item3.comment_writer }</div>
 							<span class="datetime">| ${item3.comment_date }</span>
-							
+
 							<div class="reply">${item3.free_comment}</div>
 						</div>
 					</c:forEach>

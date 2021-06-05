@@ -24,7 +24,7 @@
 		var word = document.getElementById('srch').value;
 		
 		if(word == ''){
-			alert("검색어를 입력해주세요.");
+			alert("전화번호부::검색어를 입력해주세요.");
 			return false;
 		}
 		

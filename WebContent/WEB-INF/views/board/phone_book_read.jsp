@@ -58,11 +58,6 @@
 					<hr style="border: 1px color=silver;">
 
 
-					<div class="btn-like"> <input type="button"
-							value="친절해요">
-					</div>
-
-					<hr>
 					<div style="text-align:right"><a href="${root}board/phone_book">목록으로</a></div>
 
 

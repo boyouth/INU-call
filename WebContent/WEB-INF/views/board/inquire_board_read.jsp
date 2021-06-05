@@ -31,7 +31,7 @@
 				<div class="main">
 
 					<div class="list_title">
-						<div class="tit">${inquire_info.inquire_type } |
+						<div class="tit">${inquire_info.inquire_type }|
 							${inquire_info.inquire_title }</div>
 						<div class="writer">| ${inquire_info.inquire_writer_name }</div>
 						<div class="date">| 날짜 ${inquire_info.inquire_date }</div>
@@ -51,6 +51,10 @@
 
 					</div>
 					<hr style="border: 1px color=silver;">
+					<div style="text-align: right">
+						<a href="${root }board/inquire_board">목록으로</a>
+					</div>
+
 
 
 					<div class="list_comment">
@@ -66,7 +70,7 @@
 					<c:if test="${loginUserInfo.user_id == 'admin' }">
 						<div class="list_comment_write">
 							<form action="${root }board/write_comment_inq" method="post">
-							<input type="hidden" value="${inquire_idx }" name="inquire_idx"/>
+								<input type="hidden" value="${inquire_idx }" name="inquire_idx" />
 								<div>
 									<textarea id="comment" name="comment" rows="2" cols="60"></textarea>
 								</div>
