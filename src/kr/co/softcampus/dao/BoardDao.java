@@ -107,7 +107,20 @@ public class BoardDao {
 	public List<PhoneBookBean> searchAll(String word){
 		return boardMapper.searchAll(word);
 	}
+
+	public List<FreeBoardBean> searchFreeTitle(String free_title){
+		return boardMapper.searchFreeTitle(free_title);
+		
+	}
 	
+	public 	List<FreeBoardBean> searchFreeContent(String free_content){
+		return boardMapper.searchFreeContent(free_content);
+	}
+	
+	public 	List<FreeBoardBean> searchFreeAll(String word){
+		return boardMapper.searchFreeAll(word);
+	}
+
 	
 	
 	public List<FreeLikeBean> getFreeLikeInfo(int free_idx, String user_id) {

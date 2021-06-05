@@ -124,6 +124,20 @@ public class BoardService {
 		return boardDao.searchAll(word);
 	}
 	
+	public List<FreeBoardBean> searchFreeTitle(String free_title){
+		return boardDao.searchFreeTitle(free_title);
+		
+	}
+	
+	public 	List<FreeBoardBean> searchFreeContent(String free_content){
+		return boardDao.searchFreeContent(free_content);
+	}
+	
+	public 	List<FreeBoardBean> searchFreeAll(String word){
+		return boardDao.searchFreeAll(word);
+	}
+
+	
 	public List<FreeLikeBean> getFreeLikeInfo(int free_idx, String user_id) {
 		return boardDao.getFreeLikeInfo(free_idx,user_id);
 	}

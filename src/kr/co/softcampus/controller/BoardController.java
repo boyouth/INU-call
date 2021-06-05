@@ -383,6 +383,30 @@ public class BoardController {
 		return "board/search";
 	}
 	
+	@GetMapping("/search_free")
+	public String search_free(@RequestParam("sort") int sort,
+							@RequestParam("word") String word,
+							Model model) {
+
+		
+		
+		List<FreeBoardBean> search_result = null;
+		if(sort==0) { // 제목
+			search_result = boardService.searchFreeTitle(word);
+		}
+		else if(sort==1) { // 내용
+			search_result = boardService.searchFreeContent(word);
+		}
+		else if(sort==2) { // 제목+내용
+			search_result = boardService.searchFreeAll(word);
+		}
+		
+		model.addAttribute("result", search_result);
+
+
+		return "board/search_free";
+	}
+	
 	
 
 	@PostMapping("/free_like")
