@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <meta charset="UTF-8">
 <title>자유게시판</title>
 <link rel="stylesheet" href="${root }css/index.css">
@@ -16,6 +19,33 @@
 		function write_new() {
 			location.href = "${root}board/write_new_free";
 		}
+		
+		var btn = $(".pagination .page-item");
+		btn.find("a").click(function(){
+			btn.removeClass("active");
+			$(this).parent().addClass("active");
+		});
+		
+		
+		
+		function search_free(){
+			var sort = document.getElementById('condition').value;
+			var word = document.getElementById('srch_f').value;
+			
+			if(word == ''){
+				alert("자유게시판::검색어를 입력해주세요.");
+				return false;
+			}
+			
+			location.href="${root}board/search_free?sort="+sort+"&word="+word;
+		}
+		
+		function enterkey_3(){
+			if (window.event.keyCode == 13){
+				search_free();
+			}
+		}
+		
 	</script>
 	<div class="wrapper">
 		<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -91,6 +121,20 @@
 									href="${root }board/free_board?page=${pageBean.nextPage}"
 									class="page-link">다음</a></li>
 							</ul>
+						</div>
+						
+						<div class="free_search">
+							<div>
+								검색조건
+								<select name="condition" id="condition">
+									<option value="0" selected>제목</option>
+									<option value="1">내용</option>
+									<option value="2">제목+내용</option>
+								</select> 
+								<input type="text" name="srch_f" id="srch_f" size="10" onkeyup="enterkey_3()" placeholder="검색어 입력">
+								<input type="button" value="검색" onclick="search_free()"/>
+							</div>
+						
 						</div>
 					</div>
 
