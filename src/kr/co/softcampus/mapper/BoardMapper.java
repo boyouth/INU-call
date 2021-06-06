@@ -76,15 +76,17 @@ public interface BoardMapper {
 	void addInqComment(InqCommentBean tempBoardBean);
 
 	// comment-free
-	@Select("select free_idx, free_comment, comment_writer, comment_date from free_comment where free_idx = #{free_idx}")
+	@Select("select free_idx, comment_idx, free_comment, comment_writer, comment_date from free_comment where free_idx = #{free_idx} order by comment_idx asc")
 	List<FreeCommentBean> getFreeCommentIdx(int free_idx);
 
-	@Insert("insert into free_comment (free_idx, free_comment, comment_writer, comment_date) "
-			+ "values (#{free_idx}, #{free_comment}, #{comment_writer}, #{comment_date}) ")
+	@Insert("insert into free_comment (free_idx, comment_idx, free_comment, comment_writer, comment_date) "
+			+ "values (#{free_idx}, comment_seq.nextval, #{free_comment}, #{comment_writer}, #{comment_date}) ")
 	void addFreeComment(FreeCommentBean tempBoardBean);
 
-	void deleteFreeComment(int free)
-
+	@Delete("delete from free_comment where free_idx = #{arg0} and comment_idx = #{arg1}")
+	void deleteFreeComment(int free_idx, int comment_idx);
+	
+	
 	// free-comment count - 자유게시판 중 특정 게시글의 댓글 수 가져오기
 	@Select("select count(a1.free_idx) as count from free_comment a1, free_board a2"
 			+ " where a1.free_idx = a2.free_idx and a2.free_idx = #{free_idx}")

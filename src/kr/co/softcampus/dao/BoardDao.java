@@ -72,6 +72,10 @@ public class BoardDao {
 		boardMapper.deleteInqBoardInfo(inquire_idx);
 	}
 	
+	public 	void deleteFreeComment(int free_idx, int comment_idx) {
+		boardMapper.deleteFreeComment(free_idx, comment_idx);
+	}
+	
 	
 	public int countFreeContent() {
 		return boardMapper.countFreeContent();

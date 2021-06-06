@@ -83,6 +83,10 @@ public class BoardService {
 		boardDao.deleteInqBoardInfo(inquire_idx);
 	}
 	
+	public 	void deleteFreeComment(int free_idx, int comment_idx) {
+		boardDao.deleteFreeComment(free_idx, comment_idx);
+	}
+	
 	public PageBean countFreeContent(int current) {
 		int cnt = boardDao.countFreeContent();
 		

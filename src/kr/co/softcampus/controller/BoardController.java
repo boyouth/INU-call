@@ -94,6 +94,16 @@ public class BoardController {
 
 		return "board/free_board";
 	}
+	
+	@GetMapping("/free_comment_delete")
+	public String free_comment_delete(@RequestParam("free_idx") int free_idx, @RequestParam("comment_idx") int comment_idx,Model model) {
+		
+		boardService.deleteFreeComment(free_idx, comment_idx);
+		
+		model.addAttribute("free_idx",free_idx);
+		
+		return "board/free_comment_delete";
+	}
 
 	@GetMapping("/free_board_read")
 	public String free_board_read(@RequestParam("free_idx") int free_idx,
