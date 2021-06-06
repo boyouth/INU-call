@@ -66,6 +66,8 @@
     }
 	
 	
+	
+	
 </script>
 	<div class="wrapper">
 		<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -130,6 +132,7 @@
 							${empty1 }
 					</c:if>
 					<c:forEach var="item3" items="${free_comment }">
+						
 						<div class="list_comment">
 							<div class="comment-img">
 								<img src="https://img.icons8.com/small/16/000000/topic--v1.png" />
@@ -138,6 +141,14 @@
 							<span class="datetime">| ${item3.comment_date }</span>
 
 							<div class="reply">${item3.free_comment}</div>
+
+							<c:if test="${loginUserInfo.user_name == item3.comment_writer }">
+								<div class="del-button">
+									<a style="color: #DF013A;"
+										href="${root}board/free_comment_delete?free_idx=${free_idx}&comment_idx=${item3.comment_idx}">삭제</a>
+								</div>
+
+							</c:if>
 						</div>
 					</c:forEach>
 					<div class="list_comment_write">
@@ -158,5 +169,15 @@
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
-
+		<script>
+		
+			$('.list_comment .user_name').click(function(){
+				idx = $('.list_comment .user_name').index(this);
+				
+				var str = $('.list_comment:eq(' + idx + ') .user_name').text();
+				
+				document.getElementById("comment").value = '@'+str;
+				
+			})
+		</script>
 	</div>

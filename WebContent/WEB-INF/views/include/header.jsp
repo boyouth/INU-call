@@ -29,7 +29,7 @@
 							<li class="nav-item"><a href="${root }user/join">회원가입</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="nav-item"><a href="">${loginUserInfo.user_name }님</a></li>
+							<li class="nav-item"><a href="javascript:alert('좋은 하루 되세요')">${loginUserInfo.user_name }님</a></li>
 							<li class="nav-item"><a href="${root }user/user_modify">회원정보수정</a></li>
 							<li class="nav-item"><a href="${root }user/logout">로그아웃</a></li>
 						</c:otherwise>
