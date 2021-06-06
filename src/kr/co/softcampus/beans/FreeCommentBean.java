@@ -3,6 +3,7 @@ package kr.co.softcampus.beans;
 public class FreeCommentBean {
 	
 	private int free_idx;
+	private int comment_idx;
 	private String free_comment;
 	private String comment_writer;
 	private String comment_date;
@@ -30,6 +31,12 @@ public class FreeCommentBean {
 	}
 	public void setComment_date(String comment_date) {
 		this.comment_date = comment_date;
+	}
+	public int getComment_idx() {
+		return comment_idx;
+	}
+	public void setComment_idx(int comment_idx) {
+		this.comment_idx = comment_idx;
 	}
 
 }
