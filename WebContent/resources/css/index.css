@@ -21,7 +21,6 @@ body {
 	
 }
  */
-
 .nav-container {
 	display: flex;
 	flex-direction: row;
@@ -35,6 +34,8 @@ body {
 .nav-item {
 	padding: 10px;
 	cursor: pointer;
+	
+	
 }
 
 .nav-item a {
@@ -162,10 +163,9 @@ body {
 	text-align: center;
 }
 
-.main .btn-like .likey{
-	color:#FFFFFF;
+.main .btn-like .likey {
+	color: #FFFFFF;
 }
-
 
 .main .list_comment_write {
 	display: block;
@@ -186,14 +186,21 @@ body {
 	display: inline-block;
 	font-weight: 1000;
 }
-.main .list_comment .datetime{
-	font-size:9px;
+
+.main .list_comment .datetime {
+	font-size: 9px;
 	padding-left: 3px;
 }
 
 .main .list_comment .reply {
 	display: inline-block;
 	padding: 5px 0 0 20px;
+}
+
+.main .list_comment .del-button {
+	display: inline-block;
+	font-size: 9px;
+	
 }
 
 .main .list_comment_write div {
@@ -238,22 +245,23 @@ body {
 	text-align: center;
 }
 
-.free_search{
+.free_search {
 	text-align: center;
-	padding-bottom:100px;
+	padding-bottom: 100px;
 }
 
-.search_end{
-	text-align:center;
-	padding:30px 0 30px 0;
+.search_end {
+	text-align: center;
+	padding: 30px 0 30px 0;
 }
+
 .page .pagination .page-item {
 	display: inline-block;
-	color:#000000;
+	color: #000000;
 }
 
 .page .pagination .page-item.active {
-	background-color:#01A9DB;	
+	background-color: #01A9DB;
 }
 
 .list_content div {
@@ -268,6 +276,3 @@ body {
 .content a:hover {
 	color: rgb(3, 131, 182);
 }
-
-
-
