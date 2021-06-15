@@ -195,8 +195,8 @@ public class UserController {
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
-		String hostSMTPid = "testforbo0@gmail.com";
-		String hostSMTPpwd = "checkingbo0";
+		String hostSMTPid = "";
+		String hostSMTPpwd = "";
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "inucall@inu.ac.kr";
