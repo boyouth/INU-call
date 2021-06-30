@@ -51,7 +51,7 @@
 
 						<div class="username">
 							<div>
-								<label for="id" class="label-id">Username</label>
+								<label for="id" class="label-id">아이디</label>
 							</div>
 							<div>
 								<input type="text" name="user_id" id="user_id">
@@ -60,7 +60,7 @@
 
 						<div class="userpw">
 							<div>
-								<label for="pw" class="label-pw">Password</label>
+								<label for="pw" class="label-pw">비밀번호</label>
 							</div>
 							<div>
 								<input type="password" name="user_pw" id="user_pw" onkeyup="enterkey()">
@@ -68,7 +68,8 @@
 						</div>
 						<div class="forgot_pw">
 							<div>
-								<a class="find_pw" href="${root }user/find_id">아이디를 잊으셨나요?</a>
+								<a class="find_pw" href="${root }user/find_id">아이디를 잊으셨나요?</a><br>
+								<a class="find_pw" href="${root }user/find_pw">비밀번호를 잊으셨나요?</a>
 							</div>
 						</div>
 						<div class="btn">

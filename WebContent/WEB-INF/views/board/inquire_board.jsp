@@ -53,8 +53,12 @@
 											<div class="divTableCell">${cnt}</div>
 											<div class="divTableCell">${item.inquire_type }</div>
 											<div class="divTableCell">
+												<c:if test="${item.commentis == 0 }">
+												<span style="color: #DF013A;font-size:10px;">[미답변]</span>
+												</c:if>
 												<a
 													href="${root }board/inquire_board_read?inquire_idx=${item.inquire_idx}">${item.inquire_title }</a>
+												
 											</div>
 
 											<div class="divTableCell">${item.inquire_writer_name }</div>

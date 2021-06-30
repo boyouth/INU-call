@@ -86,7 +86,7 @@
 
 							<div>
 								<div>
-									<label for="id" class="label">Username</label>
+									<label for="id" class="label">아이디</label>
 								</div>
 								<div>
 									<input type="text" name="user_id" id="user_id"
@@ -97,7 +97,7 @@
 
 							<div>
 								<div>
-									<label for="id" class="label-name">Name</label>
+									<label for="id" class="label-name">이름</label>
 								</div>
 								<div>
 									<input type="text" name="user_name">
@@ -106,7 +106,7 @@
 
 							<div>
 								<div>
-									<label for="pw" class="label">Password</label>
+									<label for="pw" class="label">비밀번호</label>
 								</div>
 								<div>
 									<input type="password" name="user_pw" required="required">
@@ -115,7 +115,7 @@
 
 							<div>
 								<div>
-									<label for="pw" class="label-pwchk">Password check</label>
+									<label for="pw" class="label-pwchk">비밀번호 확인</label>
 								</div>
 								<div>
 									<input type="password" name="user_pw_check" required="required">
@@ -124,7 +124,7 @@
 
 							<div>
 								<div>
-									<label for="id" class="label-email">Email</label>
+									<label for="id" class="label-email">이메일</label>
 								</div>
 								<div>
 									<input type="text" name="email" placeholder="예) abc@inu.ac.kr"
@@ -134,7 +134,7 @@
 
 							<div>
 								<div>
-									<label for="id" class="label-phone">Phone</label>
+									<label for="id" class="label-phone">전화번호</label>
 								</div>
 								<div>
 									<select name="phone1">

@@ -44,7 +44,7 @@
 	<!-- 계속 고정되는 부분. sub content?.html-->
 	<div class="search">
 		<div>
-			<label for="phone" class="label-phone">검색어 입력↓</label>
+			<label for="phone" class="label-phone">학부/과 입력↓</label>
 		</div>
 		<div>
 			<input type="text" name="srch" id="srch" size="15" onkeyup="enterkey_2()" > <input

@@ -59,7 +59,14 @@
 					<div class="content_list">
 						<div class="sort">자유게시판</div>
 						<!--게시판 이름-->
+						
 						<hr>
+						<div style="text-align:right; padding-bottom:10px">							
+								<select name="sorting" id="sorting">
+									<option value="0" selected>최신순</option>
+									<option value="1">인기순</option>
+								</select> 
+						</div>
 						<c:if test="${not empty loginUserInfo}">
 							<div class="btn-new">
 								<input type="button" onclick="write_new()" value="글쓰기">
@@ -130,6 +137,7 @@
 									<option value="0" selected>제목</option>
 									<option value="1">내용</option>
 									<option value="2">제목+내용</option>
+									<option value="3">작성자</option>
 								</select> 
 								<input type="text" name="srch_f" id="srch_f" size="10" onkeyup="enterkey_3()" placeholder="검색어 입력">
 								<input type="button" value="검색" onclick="search_free()"/>

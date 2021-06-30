@@ -44,7 +44,7 @@
 
 						<div>
 							<div>
-								<label for="name" class="label-name">Name</label>
+								<label for="name" class="label-name">이름</label>
 							</div>
 							<div>
 								<input type="text" name="name" id="name">
@@ -53,7 +53,7 @@
 
 						<div>
 							<div>
-								<label for="email" class="label-email">Email</label>
+								<label for="email" class="label-email">이메일</label>
 							</div>
 							<div>
 								<input type="text" name="email" id="email">
@@ -61,9 +61,6 @@
 						</div>
 						<div class="btn">
 							<button type="button" class="btn-find" onclick="click_find_id()">찾아보기</button>
-						</div>
-						<div class="forgot_pw">
-							<a href="${root }user/find_pw">비밀번호도 몰라요</a>
 						</div>
 
 

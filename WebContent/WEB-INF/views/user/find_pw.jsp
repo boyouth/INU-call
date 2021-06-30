@@ -49,7 +49,7 @@
 						<div class="note">회원 가입 시 입력한 본인 정보를 입력해주세요.</div>
 						<div>
 							<div>
-								<label for="id" class="label-id">Username</label>
+								<label for="id" class="label-id">아이디</label>
 							</div>
 							<div>
 								<input type="text" name="user_id" id="user_id">
@@ -58,7 +58,7 @@
 
 						<div>
 							<div>
-								<label for="name" class="label-name">Name</label>
+								<label for="name" class="label-name">이름</label>
 							</div>
 							<div>
 								<input type="text" name="user_name" id="user_name">
@@ -67,7 +67,7 @@
 
 						<div>
 							<div>
-								<label for="email" class="label-email">Email</label>
+								<label for="email" class="label-email">이메일</label>
 							</div>
 							<div>
 								<input type="text" name="email" id="email">
