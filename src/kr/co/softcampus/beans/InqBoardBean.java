@@ -9,6 +9,7 @@ public class InqBoardBean {
 	private String inquire_writer_id;
 	private String inquire_writer_name;
 	private String inquire_date;
+	private int commentis;
 	
 	public int getInquire_idx() {
 		return inquire_idx;
@@ -51,6 +52,12 @@ public class InqBoardBean {
 	}
 	public void setInquire_date(String inquire_date) {
 		this.inquire_date = inquire_date;
+	}
+	public int getCommentis() {
+		return commentis;
+	}
+	public void setCommentis(int commentis) {
+		this.commentis = commentis;
 	}
 	
 	
