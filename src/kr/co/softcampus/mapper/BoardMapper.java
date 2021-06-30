@@ -25,12 +25,16 @@ public interface BoardMapper {
 	List<PhoneBookBean> getPhoneBookInfoAll();
 
 	@Select("select a1.free_idx, a1.free_title, a1.free_writer_id, a2.user_name as free_writer_name, a1.free_date "
-			+ "from free_board a1, user_info a2 where a1.free_writer_id = a2.user_id" + " order by free_idx desc")
+			+ "from free_board a1, user_info a2 where a1.free_writer_id = a2.user_id" + " order by free_date desc")
 	List<FreeBoardBean> getFreeBoardInfo(RowBounds rowBounds);
+	
+//	@Select("select a1.free_idx, a1.free_title, a1.free_writer_id, a2.user_name as free_writer_name, a1.free_date "
+//			+ "from free_board a1, user_info a2 where a1.free_writer_id = a2.user_id" + " order by free_date desc")
+//	List<FreeBoardBean> getFreeBoardInfoPopular(RowBounds rowBounds);
 
-	@Select("select a1.inquire_idx, a1.inquire_type, a1.inquire_title, a1.inquire_writer_id, a2.user_name as inquire_writer_name, a1.inquire_date "
+	@Select("select a1.inquire_idx, a1.inquire_type, a1.inquire_title, a1.inquire_writer_id, a2.user_name as inquire_writer_name, a1.inquire_date, a1.commentis "
 			+ "from inquire_board a1, user_info a2 where a1.inquire_writer_id = a2.user_id"
-			+ " order by inquire_idx desc")
+			+ " order by inquire_idx desc") 
 	List<InqBoardBean> getInqBoardInfo();
 
 	@Select("select school, major, phone, commentary from inu_info where school = #{school}")
@@ -52,6 +56,9 @@ public interface BoardMapper {
 	@Insert("insert into inquire_board (inquire_idx, inquire_type, inquire_title, inquire_content, inquire_writer_id, inquire_date) "
 			+ "values (inq_seq.nextval, #{inquire_type}, #{inquire_title}, #{inquire_content}, #{inquire_writer_id}, #{inquire_date}) ")
 	void addInqBoardInfo(InqBoardBean tempBoardBean);
+	
+	@Update("update inquire_board set commentis = 1 where inquire_idx = #{inquire_idx}")
+	void commentExist(int inquire_idx);
 
 	@Update("update free_board set free_content = #{free_content} where free_idx = #{free_idx}")
 	void editFreeBoardInfo(FreeBoardBean tempBoardBean);
@@ -103,20 +110,28 @@ public interface BoardMapper {
 	// search_free - only title
 	@Select("select a1.free_idx, a1.free_title, a1.free_writer_id, a2.user_name as free_writer_name, a1.free_date "
 			+ "from free_board a1 join user_info a2 " + "on a1.free_writer_id = a2.user_id "
-			+ "where a1.free_title like '%'||#{word}||'%'")
+			+ "where a1.free_title like '%'||#{word}||'%'" + " order by a1.free_idx desc")
 	List<FreeBoardBean> searchFreeTitle(String word);
 
 	// search_free - only content
 	@Select("select a1.free_idx, a1.free_title, a1.free_writer_id, a2.user_name as free_writer_name, a1.free_date "
 			+ "from free_board a1 join user_info a2 " + "on a1.free_writer_id = a2.user_id "
-			+ "where a1.free_content like '%'||#{word}||'%'")
+			+ "where a1.free_content like '%'||#{word}||'%'" + " order by a1.free_idx desc")
 	List<FreeBoardBean> searchFreeContent(String word);
 
+	// search_free - only writer
+	@Select("select a1.free_idx, a1.free_title, a1.free_writer_id, a2.user_name as free_writer_name, a1.free_date "
+			+ "from free_board a1 join user_info a2 " + "on a1.free_Writer_id = a2.user_id "
+			+ "where a2.user_name like '%'||#{word}||'%'" + " order by a1.free_idx desc")
+	List<FreeBoardBean> searchFreeWriter(String word);
+	
 	// search_free - title+content
 	@Select("select a1.free_idx, a1.free_title, a1.free_writer_id, a2.user_name as free_writer_name, a1.free_date "
 			+ "from free_board a1 join user_info a2 " + "on a1.free_writer_id = a2.user_id "
-			+ "where a1.free_title like '%'||#{word}||'%' or a1.free_content like '%'||#{word}||'%'")
+			+ "where a1.free_title like '%'||#{word}||'%' or a1.free_content like '%'||#{word}||'%'" + " order by a1.free_idx desc")
 	List<FreeBoardBean> searchFreeAll(String word);
+	
+	
 
 	// 자유게시판 좋아요.
 	// 해당 사용자가 좋아요를 누른적이 있는지. 체크

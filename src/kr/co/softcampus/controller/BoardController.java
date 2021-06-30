@@ -286,6 +286,7 @@ public class BoardController {
 		inqCommentInfo.setComment_date(comment_date);
 
 		boardService.addInqComment(inqCommentInfo);
+		boardService.commentExist(inquire_idx);
 
 		model.addAttribute("inquire_idx", inquire_idx);
 
@@ -409,6 +410,9 @@ public class BoardController {
 		}
 		else if(sort==2) { // 제목+내용
 			search_result = boardService.searchFreeAll(word);
+		}
+		else if(sort==3) {
+			search_result = boardService.searchFreeWriter(word);
 		}
 		
 		model.addAttribute("result", search_result);

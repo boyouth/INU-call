@@ -57,6 +57,9 @@ public class BoardDao {
 		boardMapper.addInqBoardInfo(tempBoardBean);
 	}
 
+	public void commentExist(int inquire_idx) {
+		boardMapper.commentExist(inquire_idx);
+	}
 
 	public void editFreeBoardInfo(FreeBoardBean tempBoardBean) {
 		boardMapper.editFreeBoardInfo(tempBoardBean);
@@ -119,6 +122,10 @@ public class BoardDao {
 	
 	public 	List<FreeBoardBean> searchFreeContent(String free_content){
 		return boardMapper.searchFreeContent(free_content);
+	}
+	
+	public 	List<FreeBoardBean> searchFreeWriter(String free_writer){
+		return boardMapper.searchFreeWriter(free_writer);
 	}
 	
 	public 	List<FreeBoardBean> searchFreeAll(String word){

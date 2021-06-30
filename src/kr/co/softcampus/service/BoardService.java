@@ -68,7 +68,9 @@ public class BoardService {
 		boardDao.addInqBoardInfo(tempBoardBean);
 	}
 	
-
+	public void commentExist(int inquire_idx) {
+		boardDao.commentExist(inquire_idx);
+	}
 	
 	public void editFreeBoardInfo(FreeBoardBean tempBoardBean) {
 		boardDao.editFreeBoardInfo(tempBoardBean);
@@ -135,6 +137,10 @@ public class BoardService {
 	
 	public 	List<FreeBoardBean> searchFreeContent(String free_content){
 		return boardDao.searchFreeContent(free_content);
+	}
+	
+	public 	List<FreeBoardBean> searchFreeWriter(String free_writer){
+		return boardDao.searchFreeWriter(free_writer);
 	}
 	
 	public 	List<FreeBoardBean> searchFreeAll(String word){
